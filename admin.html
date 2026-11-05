@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель управления — ХабСкидок.рф</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="./js/data-seed.js"></script>
+  <script src="./js/qrcode.min.js"></script>
+  <style>
+    /* Стили специфичные для админки */
+    .admin-container {
+      display: flex;
+      min-height: 100vh;
+    }
+    .admin-sidebar {
+      width: 260px;
+      background: #111827;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .admin-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 6px;
+      transition: all 0.2s;
+    }
+    .admin-nav-item:hover, .admin-nav-item.active {
+      background: #1e293b;
+      color: #fbbf24;
+    }
+    .admin-main {
+      flex: 1;
+      background: #0b0f17;
+      padding: 30px;
+      overflow-y: auto;
+    }
+    .admin-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: #131a26;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 20px;
+      position: relative;
+    }
+    .kpi-val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 8px 0 4px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    .data-table th {
+      background: #131a26;
+      padding: 12px 16px;
+      color: #94a3b8;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-weight: 600;
+    }
+    .data-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+    }
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .role-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .role-super {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .role-mod {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .role-mgr {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+    .btn-action {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-action:hover {
+      color: #fff;
+      border-color: #f59e0b;
+    }
+    .btn-action.danger:hover {
+      border-color: #ef4444;
+      color: #ef4444;
+    }
+    .print-tent-card {
+      background: #ffffff;
+      color: #0b0f17;
+      width: 340px;
+      padding: 28px 24px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin: 20px auto;
+      border: 3px solid #000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================================================== -->
+  <!-- ЭКРАН АВТОРИЗАЦИИ (ЕСЛИ НЕ АВТОРИЗОВАН)                  -->
+  <!-- ======================================================== -->
+  <div id="login-overlay" style="position: fixed; inset: 0; background: #0b0f17; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; width: 100%; max-width: 440px; padding: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span style="font-size: 2.5rem;">🔒</span>
+        <h1 style="font-size: 1.4rem; color: #fff; margin-top: 8px;">Панель управления Хабом</h1>
+        <p style="font-size: 0.85rem; color: #94a3b8;">Управление бизнесами, скидками, отзывами и назначением администраторов</p>
+      </div>
+
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label class="form-label">Email администратора</label>
+          <input type="email" id="login-email" class="form-input" placeholder="admin@skidki.ru" value="admin@skidki.ru" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Пароль</label>
+          <input type="password" id="login-password" class="form-input" placeholder="••••••••" value="admin123" required>
+        </div>
+
+        <button type="submit" class="btn-get-discount" style="width: 100%; padding: 12px; margin-top: 8px; font-size: 0.95rem;">
+          Войти в панель управления
+        </button>
+      </form>
+
+      <!-- Быстрый демо-вход в 1 клик -->
+      <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
+        <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 8px;">БЫСТРЫЙ ВХОД ДЛЯ ТЕСТИРОВАНИЯ:</div>
+        <div style="display: flex; gap: 8px;">
+          <button id="quick-superadmin-btn" class="btn-action" style="flex: 1; padding: 8px; font-size: 0.75rem; color: #fbbf24;">
+            👑 Главный Админ
+          </button>
+          <button id="quick-moderator-btn" class="btn-action" style="flex: 1; padding: 8px; font-size: 0.75rem; color: #34d399;">
+            🛡️ Модератор
+          </button>
+        </div>
+        <a href="./index.html" style="display: block; font-size: 0.8rem; color: #94a3b8; text-decoration: none; margin-top: 14px;">
+          ← Вернуться на клиентский сайт
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- ОСНОВНАЯ ПАНЕЛЬ УПРАВЛЕНИЯ                                -->
+  <!-- ======================================================== -->
+  <div class="admin-container" id="admin-app" style="display: none;">
+    <!-- Боковое меню -->
+    <aside class="admin-sidebar">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+        <span style="font-size: 1.5rem;">🏷️</span>
+        <div>
+          <div style="font-weight: 800; color: #fff; font-size: 1.05rem;">Хаб<span style="color: #f59e0b;">Скидок</span>.рф</div>
+          <div style="font-size: 0.75rem; color: #64748b;">Панель управления</div>
+        </div>
+      </div>
+
+      <nav style="flex: 1;">
+        <div class="admin-nav-item active" data-tab="dashboard">
+          <span>📊</span>
+          <span>Дашборд</span>
+        </div>
+        <div class="admin-nav-item" data-tab="businesses">
+          <span>🏢</span>
+          <span>Заведения & Скидки</span>
+        </div>
+        <div class="admin-nav-item" data-tab="reviews">
+          <span>💬</span>
+          <span>Модерация отзывов</span>
+        </div>
+        <div class="admin-nav-item" data-tab="admins" id="nav-admins-tab">
+          <span>👥</span>
+          <span>Администраторы & Роли</span>
+        </div>
+        <div class="admin-nav-item" data-tab="qrgenerator">
+          <span>📲</span>
+          <span>Печать QR-кодов</span>
+        </div>
+        <div class="admin-nav-item" data-tab="redeem">
+          <span>🎟️</span>
+          <span>Касса / Погашение</span>
+        </div>
+      </nav>
+
+      <div style="padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+        <a href="./index.html" target="_blank" class="admin-nav-item" style="color: #60a5fa; margin-bottom: 4px;">
+          <span>🌐</span>
+          <span>Открыть карту сайта</span>
+        </a>
+        <div class="admin-nav-item" id="admin-logout-btn" style="color: #ef4444;">
+          <span>🚪</span>
+          <span>Выйти</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Основной контент панели -->
+    <main class="admin-main">
+      <!-- Верхняя полоса -->
+      <div class="admin-topbar">
+        <div>
+          <h1 style="font-size: 1.6rem; color: #fff; font-weight: 800;" id="tab-title">Дашборд аналитики</h1>
+          <p style="font-size: 0.85rem; color: #94a3b8;" id="tab-desc">Сводка по переходам по QR, отзывам и активным скидкам</p>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="text-align: right;">
+            <div style="font-weight: 700; color: #fff; font-size: 0.95rem;" id="user-display-name">Администратор</div>
+            <div id="user-display-role" class="role-badge role-super">Супер-админ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- ВКЛАДКА 1: ДАШБОРД                             -->
+      <!-- ============================================== -->
+      <div id="tab-content-dashboard" class="tab-pane">
+        <!-- Карточки KPI -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span style="font-size: 1.5rem;">📲</span>
+            <div class="kpi-val" id="stat-scans">0</div>
+            <div style="color: #94a3b8; font-size: 0.85rem;">Переходов по QR-кодам</div>
+          </div>
+          <div class="kpi-card">
+            <span style="font-size: 1.5rem;">🏢</span>
+            <div class="kpi-val" id="stat-businesses">0</div>
+            <div style="color: #94a3b8; font-size: 0.85rem;">Заведений на Яндекс Карте</div>
+          </div>
+          <div class="kpi-card">
+            <span style="font-size: 1.5rem;">⭐</span>
+            <div class="kpi-val" id="stat-reviews">0</div>
+            <div style="color: #94a3b8; font-size: 0.85rem;">Оставлено отзывов</div>
+          </div>
+          <div class="kpi-card">
+            <span style="font-size: 1.5rem;">🎟️</span>
+            <div class="kpi-val" id="stat-coupons">0</div>
+            <div style="color: #94a3b8; font-size: 0.85rem;">Выдано купонов на скидку</div>
+          </div>
+          <div class="kpi-card">
+            <span style="font-size: 1.5rem;">✅</span>
+            <div class="kpi-val" id="stat-redeemed" style="color: #34d399;">0</div>
+            <div style="color: #94a3b8; font-size: 0.85rem;">Погашено на кассах</div>
+          </div>
+        </div>
+
+        <!-- Быстрые действия и баннер -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 24px;">
+          <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 20px;">
+            <h3 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;">🔥 Воронка конверсии хаба</h3>
+            <div style="display: flex; gap: 12px; flex-direction: column;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px;">
+                  <span>Сканирование QR-кода гостем</span>
+                  <span style="color: #fbbf24; font-weight: 700;">100%</span>
+                </div>
+                <div style="height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 100%; height: 100%; background: #f59e0b;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px;">
+                  <span>Написание отзыва и получение скидки</span>
+                  <span style="color: #34d399; font-weight: 700;">68%</span>
+                </div>
+                <div style="height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 68%; height: 100%; background: #10b981;"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 4px;">
+                  <span>Погашение купона на кассе заведения</span>
+                  <span style="color: #60a5fa; font-weight: 700;">45%</span>
+                </div>
+                <div style="height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 45%; height: 100%; background: #3b82f6;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 style="color: #fff; margin-bottom: 6px; font-size: 1.1rem;">Быстрые действия</h3>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 14px;">Создавайте точки и назначайте коллег в один клик</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <button onclick="window.adminSwitchTab('businesses'); window.adminOpenAddBizModal();" class="btn-get-discount" style="padding: 10px;">
+                + Добавить новый бизнес
+              </button>
+              <button onclick="window.adminSwitchTab('admins'); window.adminOpenAddAdminModal();" class="btn-action" style="padding: 10px; color: #fff;">
+                + Назначить администратора
+              </button>
+              <button onclick="window.adminSwitchTab('qrgenerator');" class="btn-action" style="padding: 10px; color: #fbbf24;">
+                🖨️ Печать QR для столика
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- ВКЛАДКА 2: ЗАВЕДЕНИЯ И СКИДКИ                 -->
+      <!-- ============================================== -->
+      <div id="tab-content-businesses" class="tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div style="display: flex; gap: 10px;">
+            <input type="text" id="admin-biz-search" class="form-input" style="width: 280px;" placeholder="Поиск по названию или адресу...">
+            <select id="admin-biz-cat-filter" class="form-input" style="width: 200px;">
+              <option value="all">Все категории</option>
+              <option value="restaurants">Рестораны и кафе</option>
+              <option value="coffee">Кофейни и пекарни</option>
+              <option value="auto">Автомойки и детейлинг</option>
+              <option value="beauty">Красота и барбершопы</option>
+              <option value="fitness">Спорт и фитнес</option>
+              <option value="spa">Спа и отдых</option>
+              <option value="entertainment">Туризм и развлечения</option>
+              <option value="medical">Здоровье и медицина</option>
+            </select>
+          </div>
+          <button onclick="window.adminOpenAddBizModal()" class="btn-get-discount" style="padding: 10px 18px;">
+            + Добавить заведение на карту
+          </button>
+        </div>
+
+        <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; overflow: hidden;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Заведение</th>
+                <th>Категория</th>
+                <th>Город & Адрес</th>
+                <th>Размер скидки</th>
+                <th>QR-сканы</th>
+                <th>Рейтинг</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="admin-businesses-tbody">
+              <!-- Заполняется динамически -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- ВКЛАДКА 3: МОДЕРАЦИЯ ОТЗЫВОВ                   -->
+      <!-- ============================================== -->
+      <div id="tab-content-reviews" class="tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div style="display: flex; gap: 10px;">
+            <select id="admin-rev-status-filter" class="form-input" style="width: 200px;">
+              <option value="all">Все отзывы</option>
+              <option value="pending">На модерации</option>
+              <option value="approved">Одобренные</option>
+              <option value="rejected">Отклоненные</option>
+            </select>
+          </div>
+          <span style="font-size: 0.85rem; color: #94a3b8;" id="reviews-counter-label">Всего отзывов: 0</span>
+        </div>
+
+        <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; overflow: hidden;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Клиент</th>
+                <th>Заведение</th>
+                <th>Оценка</th>
+                <th>Текст отзыва</th>
+                <th>Код купона</th>
+                <th>Статус</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="admin-reviews-tbody">
+              <!-- Заполняется динамически -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- ВКЛАДКА 4: АДМИНИСТРАТОРЫ И РОЛИ               -->
+      <!-- ============================================== -->
+      <div id="tab-content-admins" class="tab-pane" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <div>
+            <h2 style="font-size: 1.2rem; color: #fff;">Команда управления сайтом</h2>
+            <p style="font-size: 0.85rem; color: #94a3b8;">Назначайте коллег администраторами или модераторами с разным уровнем доступа</p>
+          </div>
+          <button onclick="window.adminOpenAddAdminModal()" class="btn-get-discount" style="padding: 10px 18px;" id="btn-add-admin-modal">
+            + Назначить нового администратора
+          </button>
+        </div>
+
+        <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; overflow: hidden;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Имя сотрудника</th>
+                <th>Email (Логин)</th>
+                <th>Телефон</th>
+                <th>Роль и уровень доступа</th>
+                <th>Дата назначения</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="admin-admins-tbody">
+              <!-- Заполняется динамически -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Пояснение по ролям -->
+        <div style="margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+          <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 16px;">
+            <div class="role-badge role-super" style="margin-bottom: 8px;">👑 Главный администратор</div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">Полный доступ ко всему сайту: создание и удаление заведений, назначение и снятие других администраторов, просмотр полной аналитики.</div>
+          </div>
+          <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 16px;">
+            <div class="role-badge role-mod" style="margin-bottom: 8px;">🛡️ Модератор отзывов</div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">Проверка и одобрение входящих отзывов от гостей, контроль спама, проверка и погашение купонов на кассе.</div>
+          </div>
+          <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 16px;">
+            <div class="role-badge role-mgr" style="margin-bottom: 8px;">💼 Менеджер партнеров</div>
+            <div style="font-size: 0.85rem; color: #cbd5e1;">Добавление и редактирование информации о партнерских заведениях, изменение условий скидок, печать QR-кодов.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- ВКЛАДКА 5: ГЕНЕРАТОР И ПЕЧАТЬ QR-КОДОВ         -->
+      <!-- ============================================== -->
+      <div id="tab-content-qrgenerator" class="tab-pane" style="display: none;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <!-- Настройки макета -->
+          <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 24px;">
+            <h3 style="color: #fff; margin-bottom: 14px; font-size: 1.1rem;">Настройка печатного тейбл-тента</h3>
+            
+            <div class="form-group">
+              <label class="form-label">Выберите заведение для QR-кода</label>
+              <select id="qr-select-biz" class="form-input">
+                <!-- Опции подгружаются -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Заголовок на макете</label>
+              <input type="text" id="qr-custom-header" class="form-input" value="Оставь отзыв — получи скидку!">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Размер скидки (подзаголовок)</label>
+              <input type="text" id="qr-custom-sub" class="form-input" value="-20% НА ВСЁ МЕНЮ">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+              <button onclick="window.adminPrintQrTent()" class="btn-get-discount" style="flex: 1; padding: 12px;">
+                🖨️ Распечатать макет для столика
+              </button>
+            </div>
+          </div>
+
+          <!-- Предпросмотр печатного макета -->
+          <div>
+            <h3 style="color: #94a3b8; margin-bottom: 10px; font-size: 0.9rem;">Предпросмотр тейбл-тента для стола / кассы:</h3>
+            
+            <div id="print-area">
+              <div class="print-tent-card" id="tent-preview-card">
+                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: 700; margin-bottom: 4px;">
+                  ХабСкидок.рф
+                </div>
+                <div style="font-size: 1.4rem; font-weight: 900; line-height: 1.2; margin-bottom: 6px;" id="tent-preview-header">
+                  Оставь отзыв — получи скидку!
+                </div>
+                <div style="font-size: 1.2rem; font-weight: 800; color: #dc2626; margin-bottom: 12px;" id="tent-preview-discount">
+                  -20% НА ВСЁ МЕНЮ
+                </div>
+
+                <!-- Контейнер сгенерированного QR-кода -->
+                <div id="tent-qr-canvas" style="display: inline-block; padding: 10px; background: #fff; border-radius: 8px; border: 2px solid #000; margin: 10px 0;"></div>
+
+                <div style="font-size: 0.9rem; font-weight: 700; margin-top: 8px;" id="tent-preview-bizname">
+                  Ресторан
+                </div>
+                <div style="font-size: 0.75rem; color: #475569; margin-top: 6px;">
+                  1. Наведите камеру телефона на QR-код<br>
+                  2. Напишите пару слов о впечатлениях<br>
+                  3. Покажите полученный купон официанту
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- ВКЛАДКА 6: КАССА И ПОГАШЕНИЕ КУПОНОВ           -->
+      <!-- ============================================== -->
+      <div id="tab-content-redeem" class="tab-pane" style="display: none;">
+        <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 28px; max-width: 600px; margin: 0 auto; text-align: center;">
+          <span style="font-size: 3rem;">🎟️</span>
+          <h2 style="font-size: 1.4rem; color: #fff; margin: 8px 0;">Терминал кассира: проверка и погашение купона</h2>
+          <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 24px;">Введите промокод, предъявленный гостем на экране телефона</p>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <input type="text" id="redeem-code-input" class="form-input" style="font-size: 1.2rem; text-align: center; text-transform: uppercase; font-family: monospace;" placeholder="НАПРИМЕР: KAVKAZ-9124-VIP">
+            <button id="btn-check-redeem" class="btn-get-discount" style="padding: 12px 20px;">
+              Проверить
+            </button>
+          </div>
+
+          <div id="redeem-result-box" style="display: none; padding: 16px; border-radius: 10px; text-align: left; margin-top: 16px;"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- МОДАЛЬНОЕ ОКНО: ДОБАВИТЬ/РЕДАКТИРОВАТЬ БИЗНЕС          -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="biz-modal">
+    <div class="modal-dialog" style="max-width: 640px;">
+      <div class="modal-header">
+        <div class="modal-title" id="biz-modal-title">Добавить новое заведение на карту</div>
+        <button class="modal-close-btn" id="close-biz-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="biz-form">
+          <input type="hidden" id="biz-form-id">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Название заведения *</label>
+              <input type="text" id="bf-name" class="form-input" placeholder="«Шашлычный Рай»" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Категория *</label>
+              <select id="bf-category" class="form-input" required>
+                <option value="restaurants">🍔 Рестораны и кафе</option>
+                <option value="coffee">☕ Кофейни и пекарни</option>
+                <option value="auto">🚗 Автомойки и детейлинг</option>
+                <option value="beauty">✂️ Красота и барбершопы</option>
+                <option value="fitness">🏋️ Спорт и фитнес</option>
+                <option value="spa">🧖 Спа и отдых</option>
+                <option value="entertainment">🏔️ Туризм и развлечения</option>
+                <option value="medical">💊 Здоровье и медицина</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Город *</label>
+              <select id="bf-city" class="form-input" required>
+                <option value="Пятигорск">Пятигорск</option>
+                <option value="Кисловодск">Кисловодск</option>
+                <option value="Ессентуки">Ессентуки</option>
+                <option value="Сочи">Сочи</option>
+                <option value="Краснодар">Краснодар</option>
+                <option value="Махачкала">Махачкала</option>
+                <option value="Владикавказ">Владикавказ</option>
+                <option value="Нальчик">Нальчик</option>
+                <option value="Москва">Москва</option>
+                <option value="Санкт-Петербург">Санкт-Петербург</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Точный адрес *</label>
+              <input type="text" id="bf-address" class="form-input" placeholder="пр. Кирова, 47" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Широта (Lat) *</label>
+              <input type="number" step="0.0001" id="bf-lat" class="form-input" placeholder="44.0486" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Долгота (Lng) *</label>
+              <input type="number" step="0.0001" id="bf-lng" class="form-input" placeholder="43.0594" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Телефон</label>
+              <input type="tel" id="bf-phone" class="form-input" placeholder="+7 (928) 123-45-67">
+            </div>
+            <div class="form-group">
+              <label class="form-label">График работы</label>
+              <input type="text" id="bf-work-hours" class="form-input" placeholder="Пн-Вс: 10:00 — 23:00">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Скидка (%) *</label>
+              <input type="number" id="bf-discount-percent" class="form-input" value="20" min="5" max="90" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Текст бейджа скидки *</label>
+              <input type="text" id="bf-discount-badge" class="form-input" placeholder="-20% НА ВСЁ МЕНЮ" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Подробное описание акции *</label>
+            <textarea id="bf-discount-text" class="form-textarea" rows="2" placeholder="Скидка 20% на весь чек + подарок от шефа за честный отзыв" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Ссылка на фото обложки (URL)</label>
+            <input type="url" id="bf-image" class="form-input" placeholder="https://images.unsplash.com/...">
+          </div>
+
+          <button type="submit" class="btn-get-discount" style="width: 100%; padding: 12px; margin-top: 10px;">
+            Сохранить заведение на Яндекс Карте
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- МОДАЛЬНОЕ ОКНО: НАЗНАЧИТЬ НОВОГО АДМИНИСТРАТОРА        -->
+  <!-- ======================================================== -->
+  <div class="modal-overlay" id="admin-modal">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="modal-title" id="admin-modal-title">Назначить нового администратора</div>
+        <button class="modal-close-btn" id="close-admin-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="new-admin-form">
+          <input type="hidden" id="af-id">
+
+          <div class="form-group">
+            <label class="form-label">Имя и фамилия сотрудника *</label>
+            <input type="text" id="af-name" class="form-input" placeholder="Аслан Алиев" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email (логин для входа) *</label>
+            <input type="email" id="af-email" class="form-input" placeholder="aslan@skidki.ru" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Пароль *</label>
+            <input type="text" id="af-password" class="form-input" placeholder="Придумайте надежный пароль" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Телефон сотрудника</label>
+            <input type="tel" id="af-phone" class="form-input" placeholder="+7 (928) 000-00-00">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Назначаемая роль *</label>
+            <select id="af-role" class="form-input" required>
+              <option value="super_admin">👑 Главный администратор (полный доступ ко всему)</option>
+              <option value="moderator" selected>🛡️ Модератор отзывов (проверка отзывов и купонов)</option>
+              <option value="manager">💼 Менеджер партнеров (добавление и редакт. бизнесов)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-get-discount" style="width: 100%; padding: 12px; margin-top: 10px;">
+            Назначить администратором
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/admin.js"></script>
+</body>
+</html>

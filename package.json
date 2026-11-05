@@ -1,0 +1,21 @@
+{
+  "name": "rfskidki-hub",
+  "version": "1.0.0",
+  "description": "Скидочный хаб и платформа лояльности по QR-кодам с Яндекс Картами, отзывами и админ-панелью",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "скидки",
+    "яндекс-карты",
+    "qr-код",
+    "отзывы",
+    "купоны",
+    "админ-панель"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}
