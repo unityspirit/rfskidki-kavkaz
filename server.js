@@ -224,8 +224,9 @@ const server = http.createServer(async (req, res) => {
       }
 
       // 4. Проверка и погашение купонов (на кассе заведения)
-      if (pathname.match(/^\/api\/coupons\/([a-zA-Z0-9_-]+)$/) && req.method === 'GET') {
-        const code = pathname.split('/')[3];
+      if (pathname.startsWith('/api/coupons/') && pathname !== '/api/coupons/redeem' && req.method === 'GET') {
+        const rawCode = pathname.substring('/api/coupons/'.length);
+        const code = decodeURIComponent(rawCode);
         const coupon = db.getCouponByCode(code);
         if (!coupon) return sendJson(res, 404, { success: false, message: 'Купон не найден' });
         return sendJson(res, 200, { success: true, data: coupon });

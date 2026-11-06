@@ -8,19 +8,49 @@
 
   function getLocalDb() {
     const raw = localStorage.getItem('skidki_db_storage');
+    let db = null;
     if (raw) {
-      try { return JSON.parse(raw); } catch (e) {}
+      try { db = JSON.parse(raw); } catch (e) {}
     }
-    const initial = {
-      businesses: seed.businesses || [],
-      cities: seed.cities || [],
-      categories: seed.categories || [],
-      admins: seed.admins || [],
-      reviews: [],
-      coupons: []
-    };
-    localStorage.setItem('skidki_db_storage', JSON.stringify(initial));
-    return initial;
+    if (!db) {
+      db = {
+        businesses: seed.businesses || [],
+        cities: seed.cities || [],
+        categories: seed.categories || [],
+        admins: seed.admins || [],
+        reviews: seed.reviews || [],
+        coupons: seed.coupons || []
+      };
+      localStorage.setItem('skidki_db_storage', JSON.stringify(db));
+      return db;
+    }
+
+    let changed = false;
+    if (seed.businesses && seed.businesses.length > 0) {
+      const existingIds = new Set((db.businesses || []).map(b => b.id));
+      for (const seededBiz of seed.businesses) {
+        if (!existingIds.has(seededBiz.id)) {
+          db.businesses.push(seededBiz);
+          changed = true;
+        }
+      }
+    }
+    if (seed.admins && (!db.admins || db.admins.length === 0)) {
+      db.admins = seed.admins;
+      changed = true;
+    }
+    if (seed.cities && (!db.cities || db.cities.length !== seed.cities.length)) {
+      db.cities = seed.cities;
+      changed = true;
+    }
+    if (seed.categories && (!db.categories || db.categories.length !== seed.categories.length)) {
+      db.categories = seed.categories;
+      changed = true;
+    }
+    if (changed) {
+      localStorage.setItem('skidki_db_storage', JSON.stringify(db));
+    }
+    return db;
   }
 
   function saveLocalDb(db) {
@@ -43,14 +73,17 @@
     'Архыз': { lat: 43.5614, lng: 41.2789 },
     'Домбай': { lat: 43.2921, lng: 41.6267 },
     'Нальчик': { lat: 43.4853, lng: 43.6071 },
+    'Карачаево-Черкесия': { lat: 44.2233, lng: 42.0578 },
     'Черкесск': { lat: 44.2233, lng: 42.0578 },
     'Пятигорск': { lat: 44.0486, lng: 43.0594 },
     'Кисловодск': { lat: 43.9056, lng: 42.7156 },
     'Ессентуки': { lat: 44.0436, lng: 42.8617 },
+    'Железноводск': { lat: 44.1350, lng: 43.0280 },
+    'Владикавказ': { lat: 43.0211, lng: 44.6819 },
+    'Махачкала': { lat: 42.9849, lng: 47.5047 },
+    'Дербент': { lat: 42.0525, lng: 48.2740 },
     'Сочи': { lat: 43.5855, lng: 39.7231 },
     'Краснодар': { lat: 45.0355, lng: 38.9753 },
-    'Махачкала': { lat: 42.9849, lng: 47.5047 },
-    'Владикавказ': { lat: 43.0211, lng: 44.6819 },
     'Москва': { lat: 55.7558, lng: 37.6176 },
     'Санкт-Петербург': { lat: 59.9343, lng: 30.3351 }
   };
@@ -274,10 +307,12 @@
   function renderBusinessesTable() {
     const tbody = document.getElementById('admin-businesses-tbody');
     const filterCat = document.getElementById('admin-biz-cat-filter').value;
+    const filterCity = document.getElementById('admin-biz-city-filter') ? document.getElementById('admin-biz-city-filter').value : 'all';
     const searchVal = document.getElementById('admin-biz-search').value.toLowerCase().trim();
 
     let list = state.businesses;
     if (filterCat !== 'all') list = list.filter(b => b.category === filterCat);
+    if (filterCity !== 'all') list = list.filter(b => b.city === filterCity);
     if (searchVal) list = list.filter(b => b.name.toLowerCase().includes(searchVal) || b.address.toLowerCase().includes(searchVal) || b.city.toLowerCase().includes(searchVal));
 
     if (list.length === 0) {
@@ -856,6 +891,8 @@
     });
 
     document.getElementById('admin-biz-cat-filter').addEventListener('change', renderBusinessesTable);
+    const cityFilterEl = document.getElementById('admin-biz-city-filter');
+    if (cityFilterEl) cityFilterEl.addEventListener('change', renderBusinessesTable);
     document.getElementById('admin-biz-search').addEventListener('input', renderBusinessesTable);
 
     document.getElementById('bf-city').addEventListener('change', (e) => {

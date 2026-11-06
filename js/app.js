@@ -9,18 +9,45 @@
   // Локальное хранилище данных для автономного режима (GitHub Pages)
   function getLocalDb() {
     const raw = localStorage.getItem('skidki_db_storage');
+    let db = null;
     if (raw) {
-      try { return JSON.parse(raw); } catch (e) {}
+      try { db = JSON.parse(raw); } catch (e) {}
     }
-    const initial = {
-      businesses: seed.businesses || [],
-      cities: seed.cities || [],
-      categories: seed.categories || [],
-      reviews: [],
-      coupons: []
-    };
-    localStorage.setItem('skidki_db_storage', JSON.stringify(initial));
-    return initial;
+    if (!db) {
+      db = {
+        businesses: seed.businesses || [],
+        cities: seed.cities || [],
+        categories: seed.categories || [],
+        reviews: seed.reviews || [],
+        coupons: seed.coupons || []
+      };
+      localStorage.setItem('skidki_db_storage', JSON.stringify(db));
+      return db;
+    }
+
+    // Автоматическая синхронизация новых заведений из сида
+    let changed = false;
+    if (seed.businesses && seed.businesses.length > 0) {
+      const existingIds = new Set((db.businesses || []).map(b => b.id));
+      for (const seededBiz of seed.businesses) {
+        if (!existingIds.has(seededBiz.id)) {
+          db.businesses.push(seededBiz);
+          changed = true;
+        }
+      }
+    }
+    if (seed.cities && (!db.cities || db.cities.length !== seed.cities.length)) {
+      db.cities = seed.cities;
+      changed = true;
+    }
+    if (seed.categories && (!db.categories || db.categories.length !== seed.categories.length)) {
+      db.categories = seed.categories;
+      changed = true;
+    }
+    if (changed) {
+      localStorage.setItem('skidki_db_storage', JSON.stringify(db));
+    }
+    return db;
   }
 
   function saveLocalDb(db) {
