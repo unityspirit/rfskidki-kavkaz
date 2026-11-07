@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import crypto from 'node:crypto';
 import { db, CATEGORIES, CITIES } from './data/database.js';
+import { autonomousAgent } from './services/autonomous_agent.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -350,6 +351,44 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { success: true, message: 'Настройки сохранены', data: updated });
       }
 
+      // 10. Автономный ИИ-Агент поиска, верификации и обновления
+      if (pathname === '/api/agent/status' && req.method === 'GET') {
+        return sendJson(res, 200, { success: true, data: autonomousAgent.getStatus() });
+      }
+
+      if (pathname === '/api/agent/run' && req.method === 'POST') {
+        const user = getSessionUser(req);
+        if (!user || !['super_admin', 'admin'].includes(user.role)) {
+          return sendJson(res, 403, { success: false, message: 'Только администратор может принудительно запускать цикл агента' });
+        }
+        const summary = await autonomousAgent.runCycle(true);
+        return sendJson(res, 200, { success: true, message: 'Автономный цикл агента успешно выполнен', data: summary });
+      }
+
+      if (pathname === '/api/agent/toggle' && req.method === 'POST') {
+        const user = getSessionUser(req);
+        if (!user || user.role !== 'super_admin') {
+          return sendJson(res, 403, { success: false, message: 'Только Главный администратор может включать/выключать агента' });
+        }
+        const body = await readRequestBody(req);
+        const newState = autonomousAgent.toggle(body.enabled);
+        return sendJson(res, 200, { success: true, message: `Автономный режим ${newState ? 'включен' : 'выключен'}`, enabled: newState });
+      }
+
+      if (pathname === '/api/agent/logs' && req.method === 'GET') {
+        return sendJson(res, 200, { success: true, data: autonomousAgent.logs });
+      }
+
+      if (pathname === '/api/agent/queue' && req.method === 'POST') {
+        const user = getSessionUser(req);
+        if (!user || !['super_admin', 'admin'].includes(user.role)) {
+          return sendJson(res, 403, { success: false, message: 'Доступ закрыт' });
+        }
+        const body = await readRequestBody(req);
+        const count = autonomousAgent.queueCandidates(Array.isArray(body) ? body : [body]);
+        return sendJson(res, 200, { success: true, message: `В очередь агента добавлено ${count} заведений`, queueLength: autonomousAgent.candidateQueue.length });
+      }
+
       // Если эндпоинт API не найден
       return sendJson(res, 404, { success: false, message: `API эндпоинт ${req.method} ${pathname} не найден` });
     }
@@ -401,11 +440,13 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
+  autonomousAgent.startDaemon();
   console.log(`
 ========================================================================
 🚀 Хаб Скидок и Бонусов по QR-кодам успешно запущен!
 📍 Клиентский сайт с Яндекс Картами: http://localhost:${PORT}
 ⚙️ Панель управления (Админка):       http://localhost:${PORT}/admin.html
+🤖 Автономный ИИ-Агент:               АКТИВЕН 24/7 (Авто-верификация)
 🔑 Логин админа:   admin@skidki.ru   |  Пароль: admin123
 🔑 Логин модератора: moderator@skidki.ru | Пароль: mod123
 ========================================================================

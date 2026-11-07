@@ -1,0 +1,442 @@
+[
+  {
+    "id": "log-9778eb69",
+    "timestamp": "2026-11-07T17:51:28.118Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "В очередь обработки добавлено 34 кандидатов",
+    "meta": null
+  },
+  {
+    "id": "log-8b58808c",
+    "timestamp": "2026-11-07T17:51:28.136Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-51639fe5",
+    "timestamp": "2026-11-07T17:51:28.151Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 148 заведений. Кандидатов в очереди: 34",
+    "meta": null
+  },
+  {
+    "id": "log-59d015fe",
+    "timestamp": "2026-11-07T17:51:28.159Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Высокогорное кафе «Салам» (Приэльбрусье) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-d1eb813a",
+    "timestamp": "2026-11-07T17:51:28.160Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Кафе традиционной кухни «Балкария» (Приэльбрусье) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-f6c23b45",
+    "timestamp": "2026-11-07T17:51:28.162Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Высокогорное форелевое хозяйство & Кафе «Ташлы-Кол» (Приэльбрусье) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-69d0c648",
+    "timestamp": "2026-11-07T17:51:28.163Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Банный спа-комплекс с купелью «Вершина 5642» (Приэльбрусье) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-93cfeea8",
+    "timestamp": "2026-11-07T17:51:28.164Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Кафе среди реликтовых сосен «Нарат» (Приэльбрусье) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-d86379d5",
+    "timestamp": "2026-11-07T17:51:28.166Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Панорамный гриль-бар «Семёрка» (Приэльбрусье) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-dbbd95be",
+    "timestamp": "2026-11-07T17:51:28.167Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторан «Горный Воздух» (Архыз) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-cd778ed2",
+    "timestamp": "2026-11-07T17:51:28.169Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Кафе «Хижина в лесу» (Архыз) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-c1118847",
+    "timestamp": "2026-11-07T17:51:28.170Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Банный комплекс «Кедровая Баня на Софии» (Архыз) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-fbc805c2",
+    "timestamp": "2026-11-07T17:51:28.172Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Экстрим-прокат снегоходов и квадроциклов «Архыз Драйв» (Архыз) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-c18c492e",
+    "timestamp": "2026-11-07T17:51:28.174Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Глэмпинг & Видовой лаунж «Moon Glamp Arkhyz» (Архыз) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-56eb3fdd",
+    "timestamp": "2026-11-07T17:51:28.175Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Высокогорное панорамное кафе «Инэ» (Домбай) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-e236899a",
+    "timestamp": "2026-11-07T17:51:28.176Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Форелевое хозяйство & Ресторан «Озерный рай» (Домбай) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-1562f16b",
+    "timestamp": "2026-11-07T17:51:28.178Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторан «Крокус» (Домбай) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-55e07607",
+    "timestamp": "2026-11-07T17:51:28.179Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Экстрим-прокат снегоходов & Багги «Домбай Драйв» (Домбай) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-298aaeb1",
+    "timestamp": "2026-11-07T17:51:28.180Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Оздоровительный комплекс & Термальные источники «Гедуко» (Нальчик) — скидка 30%",
+    "meta": null
+  },
+  {
+    "id": "log-ef3dd4f6",
+    "timestamp": "2026-11-07T17:51:28.182Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Гриль-ресторан & Бургерная «Кура & Гриль» (Нальчик) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-71826a0e",
+    "timestamp": "2026-11-07T17:51:28.183Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторан на Арбате «Старый Город» (Нальчик) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-1cab0aec",
+    "timestamp": "2026-11-07T17:51:28.185Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Спешелти кофейня «Cup By Cup» (Нальчик) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-37682967",
+    "timestamp": "2026-11-07T17:51:28.186Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Кафе у скал «У Водопада» (Нальчик) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-2a4a80b6",
+    "timestamp": "2026-11-07T17:51:28.187Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторанный комплекс «Эдем» (Карачаево-Черкесия) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-62475b5c",
+    "timestamp": "2026-11-07T17:51:28.189Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Курортный спа-дворец «Адиюх Пэлас» (Карачаево-Черкесия) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-d94e77e2",
+    "timestamp": "2026-11-07T17:51:28.190Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Гриль-ресторан & Лаунж «Барвиха Lounge» (Карачаево-Черкесия) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-293c2a0e",
+    "timestamp": "2026-11-07T17:51:28.191Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторан «Колизей» (Пятигорск) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-52fd1d2f",
+    "timestamp": "2026-11-07T17:51:28.192Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторан восточной кухни «Старый Баку» (Кисловодск) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-7d61aed8",
+    "timestamp": "2026-11-07T17:51:28.194Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторан-оранжерея «Парк Отель» (Ессентуки) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-ccf3d40b",
+    "timestamp": "2026-11-07T17:51:28.195Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Кафе традиционной кухни «Славянка» (Железноводск) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-701c6e22",
+    "timestamp": "2026-11-07T17:51:28.196Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Панорамный горный ресторан «Долина Солнца» (Владикавказ) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-181ade34",
+    "timestamp": "2026-11-07T17:51:28.197Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Арт-ресторан «Фиагдон» (Владикавказ) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-68b04e9f",
+    "timestamp": "2026-11-07T17:51:28.197Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Этно-кафе «Даргавс» у Города Мёртвых (Владикавказ) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-13dce9f7",
+    "timestamp": "2026-11-07T17:51:28.198Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Туристический эко-комплекс & Рыбный ресторан «Главрыба» (Махачкала) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-85a4f80c",
+    "timestamp": "2026-11-07T17:51:28.200Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Видовой ресторан над каньоном «Орлиное Гнездо» (Махачкала) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-2b8c72ee",
+    "timestamp": "2026-11-07T17:51:28.201Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Этно-кафе «Гуниб» на высоте 1500 м (Махачкала) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-60a00a52",
+    "timestamp": "2026-11-07T17:51:28.203Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Атмосферная кофейня «1910» в Старом Городе (Дербент) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-46174867",
+    "timestamp": "2026-11-07T17:51:28.208Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "💾 База данных обновлена: было 148, стало 182 (+34)",
+    "meta": null
+  },
+  {
+    "id": "log-9b9ccca3",
+    "timestamp": "2026-11-07T17:51:28.214Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "✨ Seed-файлы обновлены (версия 2.182.0, 182 заведений)",
+    "meta": null
+  },
+  {
+    "id": "log-238ded57",
+    "timestamp": "2026-11-07T17:51:28.215Z",
+    "level": "info",
+    "stage": "DEPLOY",
+    "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
+    "meta": null
+  },
+  {
+    "id": "log-50437fe4",
+    "timestamp": "2026-11-07T17:51:28.375Z",
+    "level": "warn",
+    "stage": "DEPLOY",
+    "message": "Предупреждение при git push: Command failed: git add data/db.json js/data-seed.js public/js/data-seed.js data/agent_logs.json data/agent_state.json\nfatal: pathspec 'data/agent_state.json' did not match any files\n",
+    "meta": null
+  },
+  {
+    "id": "log-3784cd66",
+    "timestamp": "2026-11-07T17:51:28.378Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +34 добавлено, отклонено 0. Следующий запуск: 2026-11-08T17:51:28.377Z",
+    "meta": null
+  },
+  {
+    "id": "log-bb42e486",
+    "timestamp": "2026-11-07T18:00:02.935Z",
+    "level": "info",
+    "stage": "DAEMON",
+    "message": "🟢 Автономный демон запущен (интервал: каждые 24 ч). Статус: АКТИВЕН 24/7",
+    "meta": null
+  },
+  {
+    "id": "log-34b1cff0",
+    "timestamp": "2026-11-07T18:00:27.547Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-f1f36414",
+    "timestamp": "2026-11-07T18:00:27.552Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 182 заведений. Кандидатов в очереди: 0",
+    "meta": null
+  },
+  {
+    "id": "log-1b26ada0",
+    "timestamp": "2026-11-07T18:00:27.553Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔍 Очередь пуста. Запуск сканирования пула кандидатов Кавказа...",
+    "meta": null
+  },
+  {
+    "id": "log-aef5b146",
+    "timestamp": "2026-11-07T18:00:27.556Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "В очередь обработки добавлено 4 кандидатов",
+    "meta": null
+  },
+  {
+    "id": "log-6c379f2a",
+    "timestamp": "2026-11-07T18:00:27.557Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔎 Автоматический сканер отобрал 4 новых объектов Кавказа из пула",
+    "meta": null
+  },
+  {
+    "id": "log-8386ebd0",
+    "timestamp": "2026-11-07T18:00:27.567Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Глэмпинг & Кафе «Джилы-Су Кемп» (Приэльбрусье) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-7212970e",
+    "timestamp": "2026-11-07T18:00:27.569Z",
+    "level": "warn",
+    "stage": "VERIFICATION",
+    "message": "❌ [ОТКЛОНЕНО] Высокогорный ресторан «Безенги» (2150 м): Гео-локация заведения [43.118, 43.155] выходит за пределы кластера \"Нальчик\" (Нальчик & КБР)",
+    "meta": null
+  },
+  {
+    "id": "log-2d8cd29b",
+    "timestamp": "2026-11-07T18:00:27.570Z",
+    "level": "warn",
+    "stage": "VERIFICATION",
+    "message": "❌ [ОТКЛОНЕНО] Этно-кафе «Тау Эль» в Верхней Балкарии: Гео-локация заведения [43.125, 43.435] выходит за пределы кластера \"Нальчик\" (Нальчик & КБР)",
+    "meta": null
+  },
+  {
+    "id": "log-9016d69a",
+    "timestamp": "2026-11-07T18:00:27.571Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Экспедиционный клуб «Дуккинские Озёра» (Архыз) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-a974cfae",
+    "timestamp": "2026-11-07T18:00:27.581Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "💾 База данных обновлена: было 182, стало 184 (+2)",
+    "meta": null
+  },
+  {
+    "id": "log-5158049a",
+    "timestamp": "2026-11-07T18:00:27.588Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "✨ Seed-файлы обновлены (версия 2.184.0, 184 заведений)",
+    "meta": null
+  },
+  {
+    "id": "log-a1300dc3",
+    "timestamp": "2026-11-07T18:00:27.589Z",
+    "level": "info",
+    "stage": "DEPLOY",
+    "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
+    "meta": null
+  }
+]
