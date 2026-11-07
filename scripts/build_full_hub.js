@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { ALL_BUSINESSES } from './businesses_data.js';
+import { ALL_BUSINESSES } from './businesses_all_148.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -211,7 +211,7 @@ const seedPayload = {
   admins: ADMIN_USERS.map(({ passwordHash, ...safe }) => safe),
   reviews: INITIAL_REVIEWS,
   coupons: INITIAL_COUPONS,
-  version: "2.0.0"
+  version: "2.2.0"
 };
 
 const seedJsContent = `// Автоматически сгенерированный сид данных для автономного режима (GitHub Pages)

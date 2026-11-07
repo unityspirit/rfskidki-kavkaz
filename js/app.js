@@ -25,8 +25,17 @@
       return db;
     }
 
-    // Автоматическая синхронизация новых заведений из сида
+    // Автоматическая синхронизация новых заведений и обновление версий из сида
     let changed = false;
+    if (seed.version && db.version !== seed.version) {
+      db.version = seed.version;
+      const seedMap = new Map((seed.businesses || []).map(b => [b.id, b]));
+      db.businesses = (db.businesses || []).map(b => {
+        const fresh = seedMap.get(b.id);
+        return fresh ? { ...fresh, qrScans: b.qrScans || fresh.qrScans } : b;
+      });
+      changed = true;
+    }
     if (seed.businesses && seed.businesses.length > 0) {
       const existingIds = new Set((db.businesses || []).map(b => b.id));
       for (const seededBiz of seed.businesses) {
