@@ -1,14 +1,14 @@
 {
   "enabled": true,
   "intervalHours": 24,
-  "lastRun": "2026-11-08T20:25:08.159Z",
-  "nextRun": "2026-11-09T20:25:13.146Z",
+  "lastRun": "2026-11-08T20:25:54.636Z",
+  "nextRun": "2026-11-09T20:25:58.679Z",
   "isRunning": false,
   "metrics": {
-    "totalCycles": 4,
-    "totalScanned": 46,
-    "totalApproved": 38,
+    "totalCycles": 5,
+    "totalScanned": 50,
+    "totalApproved": 42,
     "totalRejected": 8,
-    "totalDeployed": 4
+    "totalDeployed": 8
   }
 }

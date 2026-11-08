@@ -782,5 +782,29 @@
     "stage": "DEPLOY",
     "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
     "meta": null
+  },
+  {
+    "id": "log-b12b3e31",
+    "timestamp": "2026-11-08T20:25:58.677Z",
+    "level": "success",
+    "stage": "DEPLOY",
+    "message": "🎉 Успешный деплой на GitHub Pages! Новые заведения уже онлайн.",
+    "meta": null
+  },
+  {
+    "id": "log-5fb32002",
+    "timestamp": "2026-11-08T20:25:58.680Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +4 добавлено, отклонено 0. Следующий запуск: 2026-11-09T20:25:58.679Z",
+    "meta": null
+  },
+  {
+    "id": "log-4a7e8608",
+    "timestamp": "2026-11-08T20:26:56.766Z",
+    "level": "info",
+    "stage": "DAEMON",
+    "message": "🟢 Автономный демон запущен (интервал: каждые 24 ч). Статус: АКТИВЕН 24/7",
+    "meta": null
   }
 ]
