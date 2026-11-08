@@ -32,13 +32,13 @@ export const CAUCASUS_BOUNDS = {
   "Приэльбрусье": { minLat: 43.10, maxLat: 43.45, minLng: 42.30, maxLng: 42.90, name: "Приэльбрусье (КБР)" },
   "Архыз": { minLat: 43.35, maxLat: 43.70, minLng: 41.05, maxLng: 41.45, name: "Архыз (КЧР)" },
   "Домбай": { minLat: 43.15, maxLat: 43.55, minLng: 41.50, maxLng: 41.85, name: "Домбай & Теберда (КЧР)" },
-  "Нальчик": { minLat: 43.20, maxLat: 43.80, minLng: 43.00, maxLng: 43.80, name: "Нальчик & КБР" },
+  "Нальчик": { minLat: 43.05, maxLat: 43.80, minLng: 43.00, maxLng: 43.85, name: "Нальчик & КБР (Черек, Чегем, Безенги)" },
   "Карачаево-Черкесия": { minLat: 43.80, maxLat: 44.50, minLng: 41.50, maxLng: 42.40, name: "КЧР & Черкесск" },
   "Пятигорск": { minLat: 43.98, maxLat: 44.15, minLng: 42.95, maxLng: 43.18, name: "Пятигорск (КМВ)" },
   "Кисловодск": { minLat: 43.85, maxLat: 43.98, minLng: 42.60, maxLng: 42.80, name: "Кисловодск (КМВ)" },
   "Ессентуки": { minLat: 44.00, maxLat: 44.10, minLng: 42.80, maxLng: 42.95, name: "Ессентуки (КМВ)" },
   "Железноводск": { minLat: 44.10, maxLat: 44.20, minLng: 42.98, maxLng: 43.10, name: "Железноводск (КМВ)" },
-  "Владикавказ": { minLat: 42.70, maxLat: 43.20, minLng: 44.15, maxLng: 44.85, name: "Владикавказ & РСО-Алания" },
+  "Владикавказ": { minLat: 42.65, maxLat: 43.25, minLng: 43.70, maxLng: 44.85, name: "Владикавказ & РСО-Алания (Фиагдон, Цей, Даргавс)" },
   "Махачкала": { minLat: 42.20, maxLat: 43.25, minLng: 46.50, maxLng: 47.70, name: "Махачкала & Дагестан" },
   "Дербент": { minLat: 41.95, maxLat: 42.15, minLng: 48.20, maxLng: 48.38, name: "Дербент (Дагестан)" }
 };

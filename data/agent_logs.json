@@ -670,5 +670,117 @@
     "stage": "DEPLOY",
     "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
     "meta": null
+  },
+  {
+    "id": "log-a12b56e4",
+    "timestamp": "2026-11-08T20:25:13.144Z",
+    "level": "success",
+    "stage": "DEPLOY",
+    "message": "🎉 Успешный деплой на GitHub Pages! Новые заведения уже онлайн.",
+    "meta": null
+  },
+  {
+    "id": "log-2e9267d6",
+    "timestamp": "2026-11-08T20:25:13.147Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +1 добавлено, отклонено 3. Следующий запуск: 2026-11-09T20:25:13.146Z",
+    "meta": null
+  },
+  {
+    "id": "log-b51936f5",
+    "timestamp": "2026-11-08T20:25:54.637Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-631a6d95",
+    "timestamp": "2026-11-08T20:25:54.665Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 186 заведений. Кандидатов в очереди: 0",
+    "meta": null
+  },
+  {
+    "id": "log-7adbd9e2",
+    "timestamp": "2026-11-08T20:25:54.667Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔍 Очередь пуста. Запуск сканирования пула кандидатов Кавказа...",
+    "meta": null
+  },
+  {
+    "id": "log-7df3bc52",
+    "timestamp": "2026-11-08T20:25:54.672Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "В очередь обработки добавлено 4 кандидатов",
+    "meta": null
+  },
+  {
+    "id": "log-4e59809b",
+    "timestamp": "2026-11-08T20:25:54.674Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔎 Автоматический сканер отобрал 4 новых объектов Кавказа из пула",
+    "meta": null
+  },
+  {
+    "id": "log-2de9b7a7",
+    "timestamp": "2026-11-08T20:25:54.679Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Высокогорный ресторан «Безенги» (2150 м) (Нальчик) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-cd29bd1a",
+    "timestamp": "2026-11-08T20:25:54.681Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Этно-кафе «Тау Эль» в Верхней Балкарии (Нальчик) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-decdc5d2",
+    "timestamp": "2026-11-08T20:25:54.684Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Высокогорное кафе у ледника Сказка «Цей» (Владикавказ) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-a79fbe3a",
+    "timestamp": "2026-11-08T20:25:54.686Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Аутентичная чайхана у Джума-мечети «Магал» (Дербент) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-c905c2d1",
+    "timestamp": "2026-11-08T20:25:54.700Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "💾 База данных обновлена: было 186, стало 190 (+4)",
+    "meta": null
+  },
+  {
+    "id": "log-9e27ddac",
+    "timestamp": "2026-11-08T20:25:54.709Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "✨ Seed-файлы обновлены (версия 2.190.0, 190 заведений)",
+    "meta": null
+  },
+  {
+    "id": "log-3b2080a6",
+    "timestamp": "2026-11-08T20:25:54.710Z",
+    "level": "info",
+    "stage": "DEPLOY",
+    "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
+    "meta": null
   }
 ]
