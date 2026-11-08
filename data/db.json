@@ -4233,6 +4233,30 @@
       "isActive": true,
       "createdAt": "2026-11-07T18:00:27.571Z",
       "verifiedByAgentAt": "2026-11-07T18:00:27.571Z"
+    },
+    {
+      "id": "biz-dombay-gonachhir",
+      "name": "Эко-кафе у форелевого озера Туманлы-Кёль «Гоначхир»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Домбай",
+      "address": "КЧР, ущелье Гоначхир, озеро Туманлы-Кёль",
+      "lat": 43.345,
+      "lng": 41.722,
+      "phone": "+7 (928) 389-11-55",
+      "website": "https://gonachhir-cafe.ru",
+      "workHours": "Пн-Вс: 10:00 — 19:00",
+      "discountPercent": 20,
+      "discountBadge": "-20% НА ФОРЕЛЬ И ШАШЛЫК",
+      "discountText": "Скидка 20% на свежевыловленную озерную форель на мангале, кавказский шашлык и высокогорный чай в реликтовом ущелье Гоначхир",
+      "conditions": "Предъявите купон официанту перед закрытием счёта.",
+      "rating": 4.9,
+      "reviewCount": 420,
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 3190,
+      "isActive": true,
+      "createdAt": "2026-11-08T20:23:58.841Z",
+      "verifiedByAgentAt": "2026-11-08T20:23:58.841Z"
     }
   ],
   "cities": [
@@ -4563,8 +4587,8 @@
     "issuedCoupons": 7460,
     "redeemedCoupons": 5124,
     "totalQrScans": 94000,
-    "totalBusinesses": 184,
-    "activeBusinesses": 184
+    "totalBusinesses": 185,
+    "activeBusinesses": 185
   },
   "settings": {
     "siteName": "ХабСкидок.рф",

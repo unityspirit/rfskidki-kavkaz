@@ -1,6 +1,6 @@
 // Автоматически сгенерированный сид данных для автономного режима (GitHub Pages)
-// Создан Автономным ИИ-Агентом: 2026-11-07T18:00:27.582Z
-// Всего заведений: 184
+// Создан Автономным ИИ-Агентом: 2026-11-08T20:23:59.006Z
+// Всего заведений: 185
 window.RFSKIDKI_INITIAL_DATA = {
   "cities": [
     {
@@ -4429,6 +4429,30 @@ window.RFSKIDKI_INITIAL_DATA = {
       "isActive": true,
       "createdAt": "2026-11-07T18:00:27.571Z",
       "verifiedByAgentAt": "2026-11-07T18:00:27.571Z"
+    },
+    {
+      "id": "biz-dombay-gonachhir",
+      "name": "Эко-кафе у форелевого озера Туманлы-Кёль «Гоначхир»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Домбай",
+      "address": "КЧР, ущелье Гоначхир, озеро Туманлы-Кёль",
+      "lat": 43.345,
+      "lng": 41.722,
+      "phone": "+7 (928) 389-11-55",
+      "website": "https://gonachhir-cafe.ru",
+      "workHours": "Пн-Вс: 10:00 — 19:00",
+      "discountPercent": 20,
+      "discountBadge": "-20% НА ФОРЕЛЬ И ШАШЛЫК",
+      "discountText": "Скидка 20% на свежевыловленную озерную форель на мангале, кавказский шашлык и высокогорный чай в реликтовом ущелье Гоначхир",
+      "conditions": "Предъявите купон официанту перед закрытием счёта.",
+      "rating": 4.9,
+      "reviewCount": 420,
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 3190,
+      "isActive": true,
+      "createdAt": "2026-11-08T20:23:58.841Z",
+      "verifiedByAgentAt": "2026-11-08T20:23:58.841Z"
     }
   ],
   "admins": [
@@ -4559,5 +4583,5 @@ window.RFSKIDKI_INITIAL_DATA = {
       "createdAt": "2026-11-07T12:58:38.161Z"
     }
   ],
-  "version": "2.184.0"
+  "version": "2.185.0"
 };
