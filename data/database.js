@@ -74,6 +74,11 @@ export const CATEGORIES = [
     "icon": "🏔️"
   },
   {
+    "id": "taxi",
+    "name": "Такси и трансферы",
+    "icon": "🚕"
+  },
+  {
     "id": "medical",
     "name": "Здоровье и медицина",
     "icon": "💊"
@@ -4413,6 +4418,382 @@ export const INITIAL_BUSINESSES = [
     "qrScans": 2790,
     "isActive": true,
     "createdAt": "2026-11-07T10:00:00.000Z"
+  },
+  {
+    "id": "biz-elbrus-djily-su-glamp",
+    "name": "Глэмпинг & Кафе «Джилы-Су Кемп»",
+    "category": "entertainment",
+    "categoryName": "Туризм, прокаты и экстрим",
+    "city": "Приэльбрусье",
+    "address": "КБР, Зольский р-н, урочище Джилы-Су (северный склон Эльбруса)",
+    "lat": 43.435,
+    "lng": 42.538,
+    "phone": "+7 (928) 711-55-99",
+    "website": "https://djilysu-camp.ru",
+    "workHours": "Пн-Вс: Круглосуточно",
+    "discountPercent": 25,
+    "discountBadge": "-25% НА ТЕРМЫ И ГЛЭМПИНГ",
+    "discountText": "Скидка 25% на купание в теплых нарзанах Джилы-Су, аренду панорамных шатров с видом на северную стену Эльбруса и водопад Султан",
+    "conditions": "Покажите купон администратору лагеря.",
+    "rating": 4.9,
+    "reviewCount": 420,
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 3410,
+    "isActive": true,
+    "createdAt": "2026-11-07T18:00:27.567Z",
+    "verifiedByAgentAt": "2026-11-07T18:00:27.567Z"
+  },
+  {
+    "id": "biz-arkhyz-dukka-lakes-tour",
+    "name": "Экспедиционный клуб «Дуккинские Озёра»",
+    "category": "entertainment",
+    "categoryName": "Туризм, прокаты и экстрим",
+    "city": "Архыз",
+    "address": "КЧР, пос. Архыз, долина реки Малая Дукка",
+    "lat": 43.551,
+    "lng": 41.145,
+    "phone": "+7 (928) 031-77-22",
+    "website": "https://dukka-tour.ru",
+    "workHours": "Пн-Вс: 08:00 — 20:00",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА ДЖИП-ТУРЫ",
+    "discountText": "Скидка 20% на горные джип-туры и конные походы к бирюзовым Дуккинским и Семицветному озёрам с опытным гидом",
+    "conditions": "Покажите купон при бронировании маршрута.",
+    "rating": 4.9,
+    "reviewCount": 350,
+    "image": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 2640,
+    "isActive": true,
+    "createdAt": "2026-11-07T18:00:27.571Z",
+    "verifiedByAgentAt": "2026-11-07T18:00:27.571Z"
+  },
+  {
+    "id": "biz-dombay-gonachhir",
+    "name": "Эко-кафе у форелевого озера Туманлы-Кёль «Гоначхир»",
+    "category": "restaurants",
+    "categoryName": "Рестораны и кафе",
+    "city": "Домбай",
+    "address": "КЧР, ущелье Гоначхир, озеро Туманлы-Кёль",
+    "lat": 43.345,
+    "lng": 41.722,
+    "phone": "+7 (928) 389-11-55",
+    "website": "https://gonachhir-cafe.ru",
+    "workHours": "Пн-Вс: 10:00 — 19:00",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА ФОРЕЛЬ И ШАШЛЫК",
+    "discountText": "Скидка 20% на свежевыловленную озерную форель на мангале, кавказский шашлык и высокогорный чай в реликтовом ущелье Гоначхир",
+    "conditions": "Предъявите купон официанту перед закрытием счёта.",
+    "rating": 4.9,
+    "reviewCount": 420,
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 3190,
+    "isActive": true,
+    "createdAt": "2026-11-08T20:23:58.841Z",
+    "verifiedByAgentAt": "2026-11-08T20:23:58.841Z"
+  },
+  {
+    "id": "biz-dagestan-hunzah-tobot",
+    "name": "Панорамный ресторан над каньоном Цолотль «Тобот»",
+    "category": "restaurants",
+    "categoryName": "Рестораны и кафе",
+    "city": "Махачкала",
+    "address": "Республика Дагестан, Хунзахский р-н, с. Хунзах (у водопада Тобот)",
+    "lat": 42.553,
+    "lng": 46.715,
+    "phone": "+7 (988) 425-77-88",
+    "website": "https://tobot-rest.ru",
+    "workHours": "Пн-Вс: 10:00 — 22:00",
+    "discountPercent": 20,
+    "discountBadge": "-20% У ВОДОПАДА ТОБОТ",
+    "discountText": "Скидка 20% на аварский хинкал, ботищал с тянущимся сыром и урбеч с панорамой 70-метрового водопада Тобот",
+    "conditions": "Покажите купон официанту перед закрытием счёта.",
+    "rating": 4.9,
+    "reviewCount": 610,
+    "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 4820,
+    "isActive": true,
+    "createdAt": "2026-11-08T20:25:08.200Z",
+    "verifiedByAgentAt": "2026-11-08T20:25:08.200Z"
+  },
+  {
+    "id": "biz-kbr-bezengi-rest",
+    "name": "Высокогорный ресторан «Безенги» (2150 м)",
+    "category": "restaurants",
+    "categoryName": "Рестораны и кафе",
+    "city": "Нальчик",
+    "address": "КБР, Черекский р-н, альплагерь «Безенги» (ущелье Безенги)",
+    "lat": 43.118,
+    "lng": 43.155,
+    "phone": "+7 (928) 715-21-50",
+    "website": "https://bezengi.ru/rest",
+    "workHours": "Пн-Вс: 08:00 — 22:00",
+    "discountPercent": 20,
+    "discountBadge": "-20% В СЕРДЦЕ КАВКАЗА",
+    "discountText": "Скидка 20% на горячие балкарские блюда, шурпу, стейки и глинтвейн с видом на знаменитую Безенгийскую стену пятитысячников",
+    "conditions": "Предъявите купон до закрытия счёта.",
+    "rating": 5,
+    "reviewCount": 680,
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 5120,
+    "isActive": true,
+    "createdAt": "2026-11-08T20:25:54.679Z",
+    "verifiedByAgentAt": "2026-11-08T20:25:54.679Z"
+  },
+  {
+    "id": "biz-kbr-balkaria-verh",
+    "name": "Этно-кафе «Тау Эль» в Верхней Балкарии",
+    "category": "restaurants",
+    "categoryName": "Рестораны и кафе",
+    "city": "Нальчик",
+    "address": "КБР, Черекский р-н, с. Верхняя Балкария, ул. Ленина, 88",
+    "lat": 43.125,
+    "lng": 43.435,
+    "phone": "+7 (928) 718-44-33",
+    "website": "https://tau-el-balkaria.ru",
+    "workHours": "Пн-Вс: 10:00 — 21:00",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА РОДОВЫЕ РЕЦЕПТЫ",
+    "discountText": "Скидка 20% на старинные балкарские блюда у средневековых боевых башен Амирхана: сохта, жерме, хычины и айран",
+    "conditions": "Покажите экран с купоном официанту.",
+    "rating": 4.9,
+    "reviewCount": 390,
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 2890,
+    "isActive": true,
+    "createdAt": "2026-11-08T20:25:54.681Z",
+    "verifiedByAgentAt": "2026-11-08T20:25:54.681Z"
+  },
+  {
+    "id": "biz-ossetia-tsey-monah",
+    "name": "Высокогорное кафе у ледника Сказка «Цей»",
+    "category": "restaurants",
+    "categoryName": "Рестораны и кафе",
+    "city": "Владикавказ",
+    "address": "РСО-Алания, Алагирский р-н, Цейское ущелье, канатка к Сказскому леднику (2000 м)",
+    "lat": 42.791,
+    "lng": 43.912,
+    "phone": "+7 (8672) 93-22-11",
+    "website": "https://tsey-resort.ru",
+    "workHours": "Пн-Вс: 09:30 — 17:30",
+    "discountPercent": 20,
+    "discountBadge": "-20% У СКАЗСКОГО ЛЕДНИКА",
+    "discountText": "Скидка 20% на горячие осетинские пироги, шурпу из баранины и облепиховый глинтвейн у подножия горы Монах",
+    "conditions": "Покажите купон на экране смартфона кассиру.",
+    "rating": 4.9,
+    "reviewCount": 480,
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 3720,
+    "isActive": true,
+    "createdAt": "2026-11-08T20:25:54.683Z",
+    "verifiedByAgentAt": "2026-11-08T20:25:54.684Z"
+  },
+  {
+    "id": "biz-derbent-magal-chayhana",
+    "name": "Аутентичная чайхана у Джума-мечети «Магал»",
+    "category": "coffee",
+    "categoryName": "Кофейни и пекарни",
+    "city": "Дербент",
+    "address": "Республика Дагестан, г. Дербент, 7-й магал, ул. Орта-Капы, 14",
+    "lat": 42.054,
+    "lng": 48.278,
+    "phone": "+7 (988) 459-22-00",
+    "website": "https://magal-derbent.ru",
+    "workHours": "Пн-Вс: 08:00 — 22:00",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА ЧАЙ И СЛАДОСТИ",
+    "discountText": "Скидка 20% на чай на дровах из старинного самовара, варенье из белой черешни, пахлаву и шекербуру в самом древнем квартале России",
+    "conditions": "Предъявите купон при оплате.",
+    "rating": 5,
+    "reviewCount": 540,
+    "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 4150,
+    "isActive": true,
+    "createdAt": "2026-11-08T20:25:54.686Z",
+    "verifiedByAgentAt": "2026-11-08T20:25:54.686Z"
+  },
+  {
+    "id": "biz-transfer-mrv-elbrus",
+    "name": "Эльбрус Экспресс & Горный VIP Трансфер",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Приэльбрусье",
+    "address": "КБР, пос. Терскол, 1 (Подача: Аэропорт Минеральные Воды / Нальчик)",
+    "lat": 43.2565,
+    "lng": 42.5115,
+    "phone": "+7 (928) 720-00-56",
+    "website": "https://elbrus-transfer.ru",
+    "workHours": "Круглосуточно: 24/7",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА ВСЕ ТРАНСФЕРЫ",
+    "discountText": "Скидка 20% на индивидуальные и групповые трансферы из аэропортов Минводы и Нальчик в Терскол, Поляну Чегет и Азау на комфортных минивэнах с лыжными боксами",
+    "conditions": "Встреча в зале прилёта с табличкой. Предъявите купон водителю перед поездкой.",
+    "rating": 5,
+    "reviewCount": 780,
+    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 5410,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
+  },
+  {
+    "id": "biz-transfer-arkhyz-express",
+    "name": "Архыз VIP Трансфер & Такси 4x4",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Архыз",
+    "address": "КЧР, пос. Романтик, ул. Горная (Подача: Аэропорт Минводы / Ставрополь / Невинномысск)",
+    "lat": 43.536,
+    "lng": 41.181,
+    "phone": "+7 (928) 033-00-44",
+    "website": "https://arkhyz-transfer.ru",
+    "workHours": "Круглосуточно: 24/7",
+    "discountPercent": 20,
+    "discountBadge": "-20% ТУДА И ОБРАТНО",
+    "discountText": "Скидка 20% на трансферы из аэропорта Минеральные Воды и ж/д Невинномысска в Архыз и Романтик. Полноприводные авто, детские кресла, помощь с багажом",
+    "conditions": "Покажите QR-код диспетчеру при бронировании или водителю.",
+    "rating": 4.9,
+    "reviewCount": 620,
+    "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 4890,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
+  },
+  {
+    "id": "biz-transfer-dombay-tour",
+    "name": "Домбай Экспресс Трансфер & Минивэны",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Домбай",
+    "address": "КЧР, пос. Домбай, ул. Карачаевская, 12 (Подача: Минводы / Невинномысск)",
+    "lat": 43.2925,
+    "lng": 41.627,
+    "phone": "+7 (928) 388-00-77",
+    "website": "https://dombay-transfer.ru",
+    "workHours": "Круглосуточно: 24/7",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА МИНИВЭНЫ",
+    "discountText": "Скидка 20% на трансферы из Минвод и Черкесска прямо до дверей вашего отеля в Домбае и Теберде. Опытные горные водители, надёжные цепи противоскольжения",
+    "conditions": "Предъявите купон при подтверждении заказа трансфера.",
+    "rating": 4.9,
+    "reviewCount": 540,
+    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 3950,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
+  },
+  {
+    "id": "biz-transfer-kavkaz-jeep",
+    "name": "Кавказ Джип-Такси & Горные Заброски 4x4",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Карачаево-Черкесия",
+    "address": "КЧР, г. Черкесск, пр. Ленина, 10 (Подача по всему Кавказу)",
+    "lat": 44.225,
+    "lng": 42.055,
+    "phone": "+7 (928) 390-44-00",
+    "website": "https://kavkaz-jeep-taxi.ru",
+    "workHours": "Пн-Вс: 06:00 — 23:00",
+    "discountPercent": 25,
+    "discountBadge": "-25% НА ДЖИП-ЗАБРОСКУ",
+    "discountText": "Скидка 25% на внедорожные заброски 4х4 и трансферы в дикие труднодоступные ущелья: Джилы-Су, плато Бермамыт, Софийские поляны, плато Канжол, перевал Гум-Баши",
+    "conditions": "Покажите купон инструктору-водителю перед отправлением.",
+    "rating": 5,
+    "reviewCount": 490,
+    "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 4120,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
+  },
+  {
+    "id": "biz-transfer-nalchik-kbr",
+    "name": "Нальчик Аэропорт Такси & Трансфер",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Нальчик",
+    "address": "КБР, г. Нальчик, Аэропорт Нальчик (NAL), ул. Кабардинская, 195",
+    "lat": 43.513,
+    "lng": 43.636,
+    "phone": "+7 (8662) 44-00-11",
+    "website": "https://nalchik-airport-taxi.ru",
+    "workHours": "Круглосуточно: 24/7",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА МЕЖГОРОД",
+    "discountText": "Скидка 20% на трансферы из аэропорта Нальчика в Приэльбрусье, Чегемские водопады, Голубые озера, термы Аушигер и курорты КМВ",
+    "conditions": "Встреча с рейса. Покажите купон водителю перед посадкой.",
+    "rating": 4.8,
+    "reviewCount": 380,
+    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 2890,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
+  },
+  {
+    "id": "biz-transfer-kmv-aeroport",
+    "name": "Минводы Аэропорт Трансфер Сервис",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Пятигорск",
+    "address": "Ставропольский край, г. Минеральные Воды, Международный аэропорт (MRV)",
+    "lat": 44.041,
+    "lng": 43.065,
+    "phone": "+7 (928) 350-22-11",
+    "website": "https://kmv-transfer-airport.ru",
+    "workHours": "Круглосуточно: 24/7",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА КОМФОРТ И БИЗНЕС",
+    "discountText": "Скидка 20% на трансфер из аэропорта Минводы в любой отель или санаторий Пятигорска, Кисловодска, Ессентуков и Железноводска",
+    "conditions": "Отслеживание рейса онлайн. Покажите купон водителю.",
+    "rating": 4.9,
+    "reviewCount": 840,
+    "image": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 6240,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
+  },
+  {
+    "id": "biz-transfer-ossetia-beslan",
+    "name": "Алания Трансфер & Такси Владикавказ",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Владикавказ",
+    "address": "РСО-Алания, Аэропорт Владикавказ / Беслан (OGZ)",
+    "lat": 43.024,
+    "lng": 44.68,
+    "phone": "+7 (8672) 70-11-22",
+    "website": "https://alania-transfer.ru",
+    "workHours": "Круглосуточно: 24/7",
+    "discountPercent": 20,
+    "discountBadge": "-20% В УЩЕЛЬЯ И ОТЕЛИ",
+    "discountText": "Скидка 20% на поездки из аэропорта Беслан и Владикавказа в Верхний Фиагдон, Цей, Даргавс и на Казбекский перевал на комфортабельных авто",
+    "conditions": "Предъявите купон при согласовании маршрута.",
+    "rating": 4.9,
+    "reviewCount": 460,
+    "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 3410,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
+  },
+  {
+    "id": "biz-transfer-dagestan-sulak",
+    "name": "Дагестан Тур-Трансфер & Такси Аэропорт",
+    "category": "taxi",
+    "categoryName": "Такси и трансферы",
+    "city": "Махачкала",
+    "address": "Республика Дагестан, г. Махачкала, Аэропорт Уйташ (MCX)",
+    "lat": 42.982,
+    "lng": 47.501,
+    "phone": "+7 (988) 299-11-44",
+    "website": "https://dagestan-tour-transfer.ru",
+    "workHours": "Круглосуточно: 24/7",
+    "discountPercent": 20,
+    "discountBadge": "-20% НА МАРШРУТЫ ПО ДАГЕСТАНУ",
+    "discountText": "Скидка 20% на трансферы из аэропорта Махачкалы в древний Дербент, Сулакский каньон, Хунзах, Гуниб и на базы Каспийского моря",
+    "conditions": "Покажите купон водителю при встрече.",
+    "rating": 4.9,
+    "reviewCount": 710,
+    "image": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=700&auto=format&fit=crop&q=80",
+    "qrScans": 5120,
+    "isActive": true,
+    "createdAt": "2026-11-08T12:00:00.000Z"
   }
 ];
 
@@ -4423,6 +4804,7 @@ export class Database {
       users: [],
       reviews: [],
       coupons: [],
+      transfers: [],
       stats: {
         totalReviews: 2450,
         issuedCoupons: 3820,
@@ -4504,7 +4886,7 @@ export class Database {
     "comment": "Вид на ледник Семерка просто волшебный! Форель свежайшая, хычины горячие с хрустящей корочкой. Скидка 25% прошла сразу по купону на кассе!",
     "status": "approved",
     "couponCode": "ELBRUS-7712-VIP",
-    "createdAt": "2026-11-07T15:58:38.151Z"
+    "createdAt": "2026-11-08T18:56:07.398Z"
   },
   {
     "id": "rev-202",
@@ -4516,7 +4898,7 @@ export class Database {
     "comment": "После каталки в Архызе зашли в Трамплин. Глинтвейн и стейк на высшем уровне, обслуживание быстрое, сэкономили 1200 рублей!",
     "status": "approved",
     "couponCode": "ARKHYZ-5501-WIN",
-    "createdAt": "2026-11-07T12:58:38.160Z"
+    "createdAt": "2026-11-08T15:56:07.408Z"
   },
   {
     "id": "rev-203",
@@ -4528,7 +4910,7 @@ export class Database {
     "comment": "Легендарное место Нальчика. Вид с горы Кизиловка на город завораживает. Национальная кухня на высоте!",
     "status": "approved",
     "couponCode": "NALCHIK-9921-GIFT",
-    "createdAt": "2026-11-07T09:58:38.161Z"
+    "createdAt": "2026-11-08T12:56:07.408Z"
   },
   {
     "id": "rev-204",
@@ -4540,7 +4922,7 @@ export class Database {
     "comment": "Вид на Романтик и хребет Абишира-Ахуба фантастический! Скидка по QR сработала в 1 секунду. Спасибо за отличный сервис!",
     "status": "approved",
     "couponCode": "PIKI-3301-PROMO",
-    "createdAt": "2026-11-07T05:58:38.161Z"
+    "createdAt": "2026-11-08T08:56:07.408Z"
   },
   {
     "id": "rev-205",
@@ -4552,7 +4934,7 @@ export class Database {
     "comment": "Самые лучшие хычины и шурпа на всем Домбае! Уже 10 лет приезжаем только к Зуле. Скидка 25% за честный отзыв — приятный бонус!",
     "status": "approved",
     "couponCode": "DOMBAY-8812-GOLD",
-    "createdAt": "2026-11-07T01:58:38.161Z"
+    "createdAt": "2026-11-08T04:56:07.408Z"
   },
   {
     "id": "rev-206",
@@ -4564,7 +4946,7 @@ export class Database {
     "comment": "Горячая минеральная вода в 8 бассейнах — просто блаженство! После купания чувствуешь себя заново рожденным. Купон предъявили на кассе без проблем.",
     "status": "approved",
     "couponCode": "KCHR-4421-SPA",
-    "createdAt": "2026-11-06T21:58:38.161Z"
+    "createdAt": "2026-11-08T00:56:07.408Z"
   }
 ];
     this.data.coupons = [
@@ -4582,8 +4964,8 @@ export class Database {
     "userPhone": "+7 (928) ***-45-67",
     "status": "active",
     "redeemedAt": null,
-    "expiresAt": "2026-11-21T17:58:38.161Z",
-    "createdAt": "2026-11-07T15:58:38.161Z"
+    "expiresAt": "2026-11-22T20:56:07.408Z",
+    "createdAt": "2026-11-08T18:56:07.409Z"
   },
   {
     "id": "coup-202",
@@ -4599,8 +4981,8 @@ export class Database {
     "userPhone": "+7 (918) ***-11-22",
     "status": "active",
     "redeemedAt": null,
-    "expiresAt": "2026-11-21T17:58:38.161Z",
-    "createdAt": "2026-11-07T12:58:38.161Z"
+    "expiresAt": "2026-11-22T20:56:07.409Z",
+    "createdAt": "2026-11-08T15:56:07.409Z"
   }
 ];
   }
@@ -4895,6 +5277,56 @@ export class Database {
     }
     this.save();
     return { success: true, total: this.data.stats.totalQrScans };
+  }
+
+  addTransfer(data) {
+    if (!this.data.transfers) this.data.transfers = [];
+    const id = 'tr-' + crypto.randomBytes(4).toString('hex');
+    const transfer = {
+      id,
+      from: data.from || "Аэропорт Минеральные Воды (MRV)",
+      to: data.to || "Приэльбрусье (Терскол / Поляна Азау)",
+      vehicleType: data.vehicleType || data.vehicleClass || "comfort",
+      vehicleClass: data.vehicleClass || data.vehicleType || "comfort",
+      vehicleName: data.vehicleName || "Комфорт (до 4 чел)",
+      date: data.date || new Date().toISOString().slice(0, 10),
+      time: data.time || "12:00",
+      flight: data.flight || "",
+      passengers: parseInt(data.passengers) || 1,
+      hasSki: !!data.hasSki,
+      hasChildSeat: !!data.hasChildSeat,
+      luggageInfo: data.luggageInfo || (data.hasSki ? "Горнолыжное снаряжение" : "Багаж"),
+      name: data.name || data.clientName || "Гость",
+      phone: data.phone || data.clientPhone || "",
+      clientName: data.name || data.clientName || "Гость",
+      clientPhone: data.phone || data.clientPhone || "",
+      comment: data.comment || "",
+      originalPrice: data.originalPrice || data.priceEstimated || 3500,
+      discountPrice: data.discountPrice || data.priceWithDiscount || 2800,
+      priceEstimated: data.originalPrice || data.priceEstimated || 3500,
+      priceWithDiscount: data.discountPrice || data.priceWithDiscount || 2800,
+      discountPercent: 20,
+      promoCode: data.promoCode || "ТРАНСФЕР-20",
+      status: "pending",
+      createdAt: new Date().toISOString()
+    };
+    this.data.transfers.unshift(transfer);
+    this.save();
+    return transfer;
+  }
+
+  getTransfers() {
+    return this.data.transfers || [];
+  }
+
+  updateTransferStatus(id, status) {
+    if (!this.data.transfers) return null;
+    const t = this.data.transfers.find(x => x.id === id);
+    if (!t) return null;
+    t.status = status;
+    t.updatedAt = new Date().toISOString();
+    this.save();
+    return t;
   }
 
   getStats() {

@@ -245,6 +245,7 @@
       admins: { title: 'Администраторы и сотрудники', desc: 'Назначение администраторов, разграничение прав и уровней доступа' },
       qrgenerator: { title: 'Генератор QR-кодов для печати', desc: 'Создание стильных тейбл-тентов и наклеек для столов и касс' },
       redeem: { title: 'Кассовый терминал', desc: 'Проверка и погашение предъявленного гостем скидочного купона' },
+      transfers: { title: 'Заказы трансферов и такси', desc: 'Управление бронированиями горных трансферов из аэропортов и по Кавказу со скидкой 20%' },
       agent: { title: '🤖 Автономный ИИ-Агент Кавказа', desc: 'Автоматический поиск, 6-уровневая верификация и фоновое добавление заведений 24/7' }
     };
 
@@ -258,6 +259,7 @@
     if (tabName === 'reviews') loadReviews();
     if (tabName === 'admins') loadAdmins();
     if (tabName === 'qrgenerator') setupQrGenerator();
+    if (tabName === 'transfers') loadTransfers();
     if (tabName === 'agent') loadAgentData();
   };
 
@@ -292,6 +294,44 @@
     document.getElementById('stat-reviews').textContent = stats.totalReviews || 0;
     document.getElementById('stat-coupons').textContent = stats.totalCouponsIssued || 0;
     document.getElementById('stat-redeemed').textContent = stats.totalCouponsRedeemed || 0;
+
+    // Подсчет трансферов
+    let tfCount = 0;
+    let tfPending = 0;
+    try {
+      if (!state.isStaticMode) {
+        const tfRes = await fetch('/api/transfers', { headers: { 'Authorization': `Bearer ${state.token}` } });
+        const tfData = await tfRes.json();
+        if (tfData.success && Array.isArray(tfData.data)) {
+          tfCount = tfData.data.length;
+          tfPending = tfData.data.filter(t => t.status === 'pending').length;
+        }
+      }
+    } catch (e) {}
+
+    if (tfCount === 0) {
+      const stored = localStorage.getItem('skidki_transfers');
+      if (stored) {
+        try {
+          const list = JSON.parse(stored);
+          tfCount = list.length;
+          tfPending = list.filter(t => t.status === 'pending').length;
+        } catch (e) {}
+      }
+    }
+
+    const statTfEl = document.getElementById('stat-transfers');
+    if (statTfEl) statTfEl.textContent = tfCount;
+
+    const tfBadge = document.getElementById('transfers-pending-badge');
+    if (tfBadge) {
+      if (tfPending > 0) {
+        tfBadge.style.display = 'inline-block';
+        tfBadge.textContent = tfPending;
+      } else {
+        tfBadge.style.display = 'none';
+      }
+    }
   }
 
   // 2. УПРАВЛЕНИЕ БИЗНЕСАМИ
@@ -877,6 +917,197 @@
     }
   }
 
+  // ==========================================
+  // 6. УПРАВЛЕНИЕ ЗАКАЗАМИ ТРАНСФЕРОВ И ТАКСИ
+  // ==========================================
+  async function loadTransfers() {
+    let transfers = [];
+    const statusFilter = document.getElementById('admin-tf-status-filter') ? document.getElementById('admin-tf-status-filter').value : 'all';
+
+    if (!state.isStaticMode) {
+      try {
+        let url = '/api/transfers';
+        if (statusFilter !== 'all') url += `?status=${statusFilter}`;
+        const res = await fetch(url, {
+          headers: { 'Authorization': `Bearer ${state.token}` }
+        });
+        const data = await res.json();
+        if (data.success && Array.isArray(data.data)) {
+          transfers = data.data;
+        }
+      } catch (err) {
+        state.isStaticMode = true;
+      }
+    }
+
+    if (state.isStaticMode || transfers.length === 0) {
+      const stored = localStorage.getItem('skidki_transfers');
+      let list = [];
+      if (stored) {
+        try { list = JSON.parse(stored); } catch (e) {}
+      }
+      if (list.length === 0) {
+        list = [
+          {
+            id: 'tf-kavkaz-01',
+            createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
+            from: 'Аэропорт Минеральные Воды (MRV)',
+            to: 'Приэльбрусье (Терскол / Поляна Азау)',
+            vehicleClass: 'minivan',
+            vehicleName: 'Минивэн (до 7-8 чел)',
+            date: '2026-11-09',
+            time: '14:30',
+            flight: 'SU-1304',
+            passengers: 4,
+            hasSki: true,
+            hasChildSeat: false,
+            name: 'Александр Смирнов',
+            phone: '+7 (928) 345-67-89',
+            originalPrice: 5250,
+            discountPrice: 4200,
+            status: 'pending'
+          },
+          {
+            id: 'tf-kavkaz-02',
+            createdAt: new Date(Date.now() - 3600000 * 6).toISOString(),
+            from: 'Аэропорт Минеральные Воды (MRV)',
+            to: 'Архыз (пос. Романтик)',
+            vehicleClass: 'suv',
+            vehicleName: 'Джип 4x4 (горы / снег)',
+            date: '2026-11-10',
+            time: '11:00',
+            flight: 'DP-6912',
+            passengers: 2,
+            hasSki: true,
+            hasChildSeat: true,
+            name: 'Марина Соколова',
+            phone: '+7 (918) 765-43-21',
+            originalPrice: 5250,
+            discountPrice: 4200,
+            status: 'confirmed'
+          }
+        ];
+        localStorage.setItem('skidki_transfers', JSON.stringify(list));
+      }
+
+      if (statusFilter !== 'all') {
+        transfers = list.filter(t => t.status === statusFilter);
+      } else {
+        transfers = list;
+      }
+    }
+
+    state.transfers = transfers;
+    renderTransfersTable(transfers);
+  }
+
+  function renderTransfersTable(list) {
+    const tbody = document.getElementById('admin-transfers-tbody');
+    const counterLabel = document.getElementById('transfers-counter-label');
+    if (counterLabel) counterLabel.textContent = `Всего заявок: ${list.length}`;
+    if (!tbody) return;
+
+    if (list.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 24px;">Заявок на трансфер в данном статусе пока нет</td></tr>`;
+      return;
+    }
+
+    const statusBadge = (s) => {
+      if (s === 'confirmed') return '<span style="font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(59,130,246,0.2); color: #60a5fa;">В работе</span>';
+      if (s === 'completed') return '<span style="font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(16,185,129,0.2); color: #34d399;">Завершен</span>';
+      if (s === 'cancelled') return '<span style="font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(239,68,68,0.2); color: #f87171;">Отменен</span>';
+      return '<span style="font-size: 0.75rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(245,158,11,0.2); color: #fbbf24;">Новая</span>';
+    };
+
+    tbody.innerHTML = list.map(t => `
+      <tr>
+        <td>
+          <div style="font-family: monospace; font-weight: 700; color: #fbbf24;">#${t.id.slice(-8)}</div>
+          <div style="font-size: 0.7rem; color: #64748b;">${new Date(t.createdAt).toLocaleString('ru-RU')}</div>
+        </td>
+        <td>
+          <div style="font-weight: 700; color: #fff;">${t.name}</div>
+          <a href="tel:${t.phone}" style="font-size: 0.78rem; color: #34d399; text-decoration: none;">📞 ${t.phone}</a>
+        </td>
+        <td style="max-width: 220px;">
+          <div style="font-size: 0.8rem; color: #94a3b8;">🛫 ${t.from}</div>
+          <div style="font-size: 0.85rem; font-weight: 700; color: #e2e8f0; margin-top: 2px;">🏔️ ${t.to}</div>
+        </td>
+        <td>
+          <div style="font-weight: 600; color: #fbbf24; font-size: 0.82rem;">${t.vehicleName}</div>
+          <div style="font-size: 0.75rem; color: #94a3b8;">👥 ${t.passengers} пасс.${t.hasSki ? ' • ⛷️ Лыжи' : ''}${t.hasChildSeat ? ' • 👶 Кресло' : ''}</div>
+          ${t.flight ? `<div style="font-size: 0.72rem; color: #60a5fa;">Рейс: ${t.flight}</div>` : ''}
+        </td>
+        <td>
+          <div style="font-weight: 700; color: #fff; font-size: 0.85rem;">📅 ${t.date}</div>
+          <div style="font-size: 0.8rem; color: #fbbf24;">⏰ ${t.time}</div>
+        </td>
+        <td>
+          <div style="font-size: 1.05rem; font-weight: 800; color: #34d399;">${t.discountPrice.toLocaleString('ru-RU')} ₽</div>
+          <div style="font-size: 0.7rem; color: #64748b; text-decoration: line-through;">${t.originalPrice.toLocaleString('ru-RU')} ₽</div>
+        </td>
+        <td>
+          ${statusBadge(t.status)}
+        </td>
+        <td>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            ${t.status !== 'confirmed' && t.status !== 'completed' ? `
+              <button onclick="window.adminSetTransferStatus('${t.id}', 'confirmed')" class="btn-action" title="Взять в работу" style="color: #60a5fa;">✓ В работу</button>
+            ` : ''}
+            ${t.status === 'confirmed' ? `
+              <button onclick="window.adminSetTransferStatus('${t.id}', 'completed')" class="btn-action" title="Завершить" style="color: #34d399;">🏁 Завершен</button>
+            ` : ''}
+            ${t.status !== 'cancelled' && t.status !== 'completed' ? `
+              <button onclick="window.adminSetTransferStatus('${t.id}', 'cancelled')" class="btn-action danger" title="Отменить" style="color: #f87171;">✗</button>
+            ` : ''}
+            <button onclick="window.adminDeleteTransfer('${t.id}')" class="btn-action danger" title="Удалить">🗑️</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  window.adminSetTransferStatus = async function (id, status) {
+    if (!state.isStaticMode) {
+      try {
+        const res = await fetch(`/api/transfers/${id}/status`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${state.token}` },
+          body: JSON.stringify({ status })
+        });
+        const data = await res.json();
+        if (data.success) { loadTransfers(); loadDashboardData(); return; }
+      } catch (e) {
+        state.isStaticMode = true;
+      }
+    }
+
+    const stored = localStorage.getItem('skidki_transfers');
+    if (stored) {
+      let list = JSON.parse(stored);
+      const item = list.find(t => t.id === id);
+      if (item) item.status = status;
+      localStorage.setItem('skidki_transfers', JSON.stringify(list));
+    }
+    loadTransfers();
+    loadDashboardData();
+  };
+
+  window.adminDeleteTransfer = async function (id) {
+    if (!confirm('Удалить эту заявку на трансфер?')) return;
+    const stored = localStorage.getItem('skidki_transfers');
+    if (stored) {
+      let list = JSON.parse(stored).filter(t => t.id !== id);
+      localStorage.setItem('skidki_transfers', JSON.stringify(list));
+    }
+    loadTransfers();
+    loadDashboardData();
+  };
+
+  window.refreshTransfersTable = function () {
+    loadTransfers();
+  };
+
   function setupEventListeners() {
     document.getElementById('admin-login-form').addEventListener('submit', (e) => {
       e.preventDefault();
@@ -934,6 +1165,9 @@
     document.getElementById('redeem-code-input').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') checkAndRedeemCoupon();
     });
+
+    const tfFilterEl = document.getElementById('admin-tf-status-filter');
+    if (tfFilterEl) tfFilterEl.addEventListener('change', loadTransfers);
   }
 
   // ==========================================

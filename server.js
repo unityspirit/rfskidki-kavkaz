@@ -351,6 +351,42 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { success: true, message: 'Настройки сохранены', data: updated });
       }
 
+      // 9.1. Заказ трансферов и такси
+      if (pathname === '/api/transfers' && req.method === 'POST') {
+        const body = await readRequestBody(req);
+        const phone = body.phone || body.clientPhone;
+        if (!phone) {
+          return sendJson(res, 400, { success: false, message: 'Укажите контактный номер телефона' });
+        }
+        const transfer = db.addTransfer(body);
+        return sendJson(res, 201, {
+          success: true,
+          message: 'Заявка на трансфер принята! Водитель свяжется с вами для подтверждения времени и рейса.',
+          data: transfer
+        });
+      }
+
+      if (pathname === '/api/transfers' && req.method === 'GET') {
+        const user = getSessionUser(req);
+        if (!user || !['super_admin', 'admin', 'moderator', 'manager'].includes(user.role)) {
+          return sendJson(res, 403, { success: false, message: 'Доступ закрыт' });
+        }
+        const list = db.getTransfers();
+        return sendJson(res, 200, { success: true, count: list.length, data: list });
+      }
+
+      if (pathname.match(/^\/api\/transfers\/([a-zA-Z0-9_-]+)\/status$/) && req.method === 'PUT') {
+        const user = getSessionUser(req);
+        if (!user || !['super_admin', 'admin', 'moderator'].includes(user.role)) {
+          return sendJson(res, 403, { success: false, message: 'Доступ закрыт' });
+        }
+        const id = pathname.split('/')[3];
+        const body = await readRequestBody(req);
+        const updated = db.updateTransferStatus(id, body.status);
+        if (!updated) return sendJson(res, 404, { success: false, message: 'Заявка на трансфер не найдена' });
+        return sendJson(res, 200, { success: true, data: updated });
+      }
+
       // 10. Автономный ИИ-Агент поиска, верификации и обновления
       if (pathname === '/api/agent/status' && req.method === 'GET') {
         return sendJson(res, 200, { success: true, data: autonomousAgent.getStatus() });

@@ -90,6 +90,7 @@
     fitness: { preset: 'islands#yellowSportIcon', color: '#eab308' },
     entertainment: { preset: 'islands#purpleEntertainmentIcon', color: '#a855f7' },
     medical: { preset: 'islands#redMedicalIcon', color: '#dc2626' },
+    taxi: { preset: 'islands#yellowAutoIcon', color: '#f59e0b' },
     default: { preset: 'islands#orangeDotIcon', color: '#f59e0b' }
   };
 
@@ -255,9 +256,15 @@
           <div style="background: #fef3c7; border: 1px dashed #f59e0b; padding: 6px 8px; border-radius: 6px; font-size: 12px; color: #92400e; font-weight: 600; margin-bottom: 10px;">
             ${biz.discountText}
           </div>
-          <button onclick="window.appOpenReviewModal('${biz.id}')" style="width: 100%; background: #f59e0b; color: #000; font-weight: 800; font-size: 12px; padding: 8px; border: none; border-radius: 6px; cursor: pointer;">
-            🎁 Получить скидку за отзыв
-          </button>
+          ${(biz.category === 'taxi' || (biz.id && biz.id.startsWith('biz-transfer'))) ? `
+            <button onclick="window.appOpenTransferModal({ to: '${biz.city}' })" style="width: 100%; background: #10b981; color: #000; font-weight: 800; font-size: 12px; padding: 8px; border: none; border-radius: 6px; cursor: pointer;">
+              🚕 Забронировать трансфер со скидкой
+            </button>
+          ` : `
+            <button onclick="window.appOpenReviewModal('${biz.id}')" style="width: 100%; background: #f59e0b; color: #000; font-weight: 800; font-size: 12px; padding: 8px; border: none; border-radius: 6px; cursor: pointer;">
+              🎁 Получить скидку за отзыв
+            </button>
+          `}
         </div>
       `;
 
@@ -329,9 +336,15 @@
           </div>
 
           <div class="card-actions">
-            <button class="btn-get-discount" onclick="window.appOpenReviewModal('${biz.id}')">
-              <span>🎁 Забрать скидку</span>
-            </button>
+            ${(biz.category === 'taxi' || (biz.id && biz.id.startsWith('biz-transfer'))) ? `
+              <button class="btn-get-discount" onclick="window.appOpenTransferModal({ to: '${biz.city}' })" style="background: linear-gradient(135deg, #f59e0b, #10b981); color: #000; font-weight: 800;">
+                <span>🚕 Заказать трансфер</span>
+              </button>
+            ` : `
+              <button class="btn-get-discount" onclick="window.appOpenReviewModal('${biz.id}')">
+                <span>🎁 Забрать скидку</span>
+              </button>
+            `}
             <button class="btn-show-map" onclick="window.appFocusMap('${biz.id}')" title="Показать на карте">
               <span>📍 На карте</span>
             </button>
@@ -745,6 +758,272 @@
     });
 
     document.getElementById('review-form').addEventListener('submit', handleReviewSubmit);
+
+    // Слушатели модуля такси и горных трансферов
+    const headerTfBtn = document.getElementById('header-transfer-btn');
+    if (headerTfBtn) headerTfBtn.addEventListener('click', () => window.appOpenTransferModal());
+
+    const bannerTfBtn = document.getElementById('banner-transfer-btn');
+    if (bannerTfBtn) bannerTfBtn.addEventListener('click', () => window.appOpenTransferModal());
+
+    const closeTfBtn = document.getElementById('close-transfer-modal');
+    if (closeTfBtn) {
+      closeTfBtn.addEventListener('click', () => {
+        document.getElementById('transfer-modal').classList.remove('active');
+      });
+    }
+
+    const tfFrom = document.getElementById('tf-from');
+    const tfTo = document.getElementById('tf-to');
+    const tfFromCustom = document.getElementById('tf-from-custom');
+    const tfToCustom = document.getElementById('tf-to-custom');
+
+    if (tfFrom) tfFrom.addEventListener('change', updateTransferCalculation);
+    if (tfTo) tfTo.addEventListener('change', updateTransferCalculation);
+    if (tfFromCustom) tfFromCustom.addEventListener('input', updateTransferCalculation);
+    if (tfToCustom) tfToCustom.addEventListener('input', updateTransferCalculation);
+
+    document.querySelectorAll('input[name="vehicleClass"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        document.querySelectorAll('.vehicle-option').forEach(l => {
+          const inp = l.querySelector('input');
+          if (inp && inp.checked) {
+            l.style.borderColor = '#fbbf24';
+            l.style.background = 'rgba(245, 158, 11, 0.15)';
+          } else {
+            l.style.borderColor = 'rgba(255,255,255,0.1)';
+            l.style.background = '#182234';
+          }
+        });
+        updateTransferCalculation();
+      });
+    });
+
+    const tfForm = document.getElementById('transfer-form');
+    if (tfForm) tfForm.addEventListener('submit', handleTransferSubmit);
+  }
+
+  // ========================================================
+  // МОДУЛЬ ТАКСИ И ГОРНЫХ ТРАНСФЕРОВ (СО СКИДКОЙ 20%)
+  // ========================================================
+  const TRANSFER_ROUTES = {
+    'Аэропорт Минеральные Воды (MRV) -> Приэльбрусье (Терскол / Поляна Азау / Чегет)': { km: 185, time: '2.5 ч', basePrice: 3500 },
+    'Аэропорт Минеральные Воды (MRV) -> Архыз (пос. Романтик / курорт Архыз)': { km: 215, time: '3.0 ч', basePrice: 4200 },
+    'Аэропорт Минеральные Воды (MRV) -> Домбай (пос. Домбай / Теберда)': { km: 225, time: '3.2 ч', basePrice: 4500 },
+    'Аэропорт Минеральные Воды (MRV) -> Кисловодск (Курортный бульвар / санатории)': { km: 55, time: '50 мин', basePrice: 1400 },
+    'Аэропорт Минеральные Воды (MRV) -> Пятигорск (центр / отели)': { km: 28, time: '30 мин', basePrice: 800 },
+    'Аэропорт Минеральные Воды (MRV) -> Нальчик (центр / Долинск)': { km: 105, time: '1.3 ч', basePrice: 2200 },
+    'Аэропорт Минеральные Воды (MRV) -> Верхний Фиагдон (Куртатинское ущелье)': { km: 220, time: '3.0 ч', basePrice: 4600 },
+    'Аэропорт Минеральные Воды (MRV) -> Цейское ущелье (отели / альплагерь)': { km: 250, time: '3.5 ч', basePrice: 5200 },
+    'Аэропорт Минеральные Воды (MRV) -> Сулакский каньон (пгт Дубки / Главрыба)': { km: 410, time: '5.5 ч', basePrice: 8500 },
+    'Аэропорт Минеральные Воды (MRV) -> Дербент (крепость / побережье)': { km: 490, time: '6.5 ч', basePrice: 9900 },
+
+    'Аэропорт Нальчик (NAL) -> Приэльбрусье (Терскол / Поляна Азау / Чегет)': { km: 125, time: '1.8 ч', basePrice: 2600 },
+    'Аэропорт Нальчик (NAL) -> Архыз (пос. Романтик / курорт Архыз)': { km: 260, time: '3.5 ч', basePrice: 5200 },
+    'Аэропорт Нальчик (NAL) -> Домбай (пос. Домбай / Теберда)': { km: 270, time: '3.8 ч', basePrice: 5500 },
+    'Аэропорт Нальчик (NAL) -> Пятигорск (центр / отели)': { km: 85, time: '1.2 ч', basePrice: 1800 },
+    'Аэропорт Нальчик (NAL) -> Кисловодск (Курортный бульвар / санатории)': { km: 110, time: '1.5 ч', basePrice: 2200 },
+    'Аэропорт Нальчик (NAL) -> Верхний Фиагдон (Куртатинское ущелье)': { km: 125, time: '1.8 ч', basePrice: 2800 },
+
+    'Аэропорт Владикавказ / Беслан (OGZ) -> Верхний Фиагдон (Куртатинское ущелье)': { km: 50, time: '50 мин', basePrice: 1500 },
+    'Аэропорт Владикавказ / Беслан (OGZ) -> Цейское ущелье (отели / альплагерь)': { km: 85, time: '1.5 ч', basePrice: 2400 },
+    'Аэропорт Владикавказ / Беслан (OGZ) -> Приэльбрусье (Терскол / Поляна Азау / Чегет)': { km: 220, time: '3.0 ч', basePrice: 4800 },
+    'Аэропорт Владикавказ / Беслан (OGZ) -> Архыз (пос. Романтик / курорт Архыз)': { km: 350, time: '4.8 ч', basePrice: 7500 },
+    'Аэропорт Владикавказ / Беслан (OGZ) -> Дербент (крепость / побережье)': { km: 310, time: '4.5 ч', basePrice: 6800 },
+
+    'Аэропорт Махачкала / Уйташ (MCX) -> Сулакский каньон (пгт Дубки / Главрыба)': { km: 95, time: '1.5 ч', basePrice: 2500 },
+    'Аэропорт Махачкала / Уйташ (MCX) -> Дербент (крепость / побережье)': { km: 115, time: '1.8 ч', basePrice: 2800 },
+
+    'Ж/Д вокзал Минеральные Воды -> Приэльбрусье (Терскол / Поляна Азау / Чегет)': { km: 180, time: '2.5 ч', basePrice: 3400 },
+    'Ж/Д вокзал Минеральные Воды -> Архыз (пос. Романтик / курорт Архыз)': { km: 210, time: '3.0 ч', basePrice: 4100 },
+    'Ж/Д вокзал Минеральные Воды -> Домбай (пос. Домбай / Теберда)': { km: 220, time: '3.1 ч', basePrice: 4400 }
+  };
+
+  const VEHICLE_MULTIPLIERS = {
+    comfort: { factor: 1.0, name: 'Комфорт (до 4 чел)' },
+    suv: { factor: 1.25, name: 'Джип 4x4 (горы / снег)' },
+    minivan: { factor: 1.5, name: 'Минивэн (до 7-8 чел)' },
+    business: { factor: 1.8, name: 'Бизнес (премиум)' }
+  };
+
+  function updateTransferCalculation() {
+    const fromSelect = document.getElementById('tf-from');
+    const toSelect = document.getElementById('tf-to');
+    const fromCustom = document.getElementById('tf-from-custom');
+    const toCustom = document.getElementById('tf-to-custom');
+    if (!fromSelect || !toSelect) return;
+
+    const isFromCustom = fromSelect.value === 'custom';
+    const isToCustom = toSelect.value === 'custom';
+
+    if (fromCustom) fromCustom.style.display = isFromCustom ? 'block' : 'none';
+    if (toCustom) toCustom.style.display = isToCustom ? 'block' : 'none';
+
+    const fromVal = isFromCustom ? (fromCustom.value.trim() || 'Индивидуальный адрес') : fromSelect.value;
+    const toVal = isToCustom ? (toCustom.value.trim() || 'Индивидуальный адрес') : toSelect.value;
+
+    const routeKey = `${fromSelect.value} -> ${toSelect.value}`;
+    const route = TRANSFER_ROUTES[routeKey] || { km: 180, time: '~2.5 ч', basePrice: 3600 };
+
+    const selectedVehicle = document.querySelector('input[name="vehicleClass"]:checked');
+    const vClass = selectedVehicle ? selectedVehicle.value : 'comfort';
+    const vInfo = VEHICLE_MULTIPLIERS[vClass] || VEHICLE_MULTIPLIERS.comfort;
+
+    let base = Math.round((route.basePrice * vInfo.factor) / 50) * 50;
+    let discounted = Math.round((base * 0.8) / 50) * 50; // -20% скидка
+
+    const routeInfoEl = document.getElementById('tf-calc-route-info');
+    const priceDiscEl = document.getElementById('tf-price-discount');
+    const priceOrigEl = document.getElementById('tf-price-original');
+
+    if (routeInfoEl) routeInfoEl.textContent = `Расстояние: ~${route.km} км | В пути: ~${route.time}`;
+    if (priceDiscEl) priceDiscEl.textContent = `${discounted.toLocaleString('ru-RU')} ₽`;
+    if (priceOrigEl) priceOrigEl.textContent = `${base.toLocaleString('ru-RU')} ₽`;
+
+    return {
+      km: route.km,
+      time: route.time,
+      originalPrice: base,
+      discountPrice: discounted,
+      from: fromVal,
+      to: toVal,
+      vehicleClass: vClass,
+      vehicleName: vInfo.name
+    };
+  }
+
+  window.appOpenTransferModal = function (opts = {}) {
+    const modal = document.getElementById('transfer-modal');
+    if (!modal) return;
+
+    const form = document.getElementById('transfer-form');
+    const successBox = document.getElementById('transfer-success-box');
+    if (form) form.style.display = 'block';
+    if (successBox) successBox.style.display = 'none';
+
+    const dateInput = document.getElementById('tf-date');
+    if (dateInput && !dateInput.value) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.value = today;
+      dateInput.min = today;
+    }
+
+    if (opts.to) {
+      const toSelect = document.getElementById('tf-to');
+      if (toSelect) {
+        for (let i = 0; i < toSelect.options.length; i++) {
+          if (toSelect.options[i].value.toLowerCase().includes(opts.to.toLowerCase())) {
+            toSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    if (opts.from) {
+      const fromSelect = document.getElementById('tf-from');
+      if (fromSelect) {
+        for (let i = 0; i < fromSelect.options.length; i++) {
+          if (fromSelect.options[i].value.toLowerCase().includes(opts.from.toLowerCase())) {
+            fromSelect.selectedIndex = i;
+            break;
+          }
+        }
+      }
+    }
+
+    updateTransferCalculation();
+    modal.classList.add('active');
+  };
+
+  async function handleTransferSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('tf-submit-btn');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Отправляем заявку водителям...';
+    }
+
+    const calc = updateTransferCalculation();
+    const payload = {
+      from: calc.from,
+      to: calc.to,
+      vehicleClass: calc.vehicleClass,
+      vehicleName: calc.vehicleName,
+      date: document.getElementById('tf-date').value,
+      time: document.getElementById('tf-time').value,
+      flight: (document.getElementById('tf-flight').value || '').trim(),
+      passengers: parseInt(document.getElementById('tf-passengers').value) || 1,
+      hasSki: document.getElementById('tf-opt-ski') ? document.getElementById('tf-opt-ski').checked : false,
+      hasChildSeat: document.getElementById('tf-opt-child') ? document.getElementById('tf-opt-child').checked : false,
+      name: document.getElementById('tf-name').value.trim(),
+      phone: document.getElementById('tf-phone').value.trim(),
+      originalPrice: calc.originalPrice,
+      discountPrice: calc.discountPrice,
+      km: calc.km,
+      duration: calc.time
+    };
+
+    let result = null;
+    if (!state.isStaticMode) {
+      try {
+        const res = await fetch('/api/transfers', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) result = data.data;
+      } catch (err) {
+        state.isStaticMode = true;
+      }
+    }
+
+    if (!result) {
+      result = {
+        id: 'tf-' + Date.now().toString(36),
+        createdAt: new Date().toISOString(),
+        status: 'pending',
+        ...payload
+      };
+      const stored = localStorage.getItem('skidki_transfers');
+      const list = stored ? JSON.parse(stored) : [];
+      list.unshift(result);
+      localStorage.setItem('skidki_transfers', JSON.stringify(list));
+
+      const myTfs = localStorage.getItem('skidki_my_transfers');
+      const myTfsList = myTfs ? JSON.parse(myTfs) : [];
+      myTfsList.unshift(result);
+      localStorage.setItem('skidki_my_transfers', JSON.stringify(myTfsList));
+    }
+
+    document.getElementById('transfer-form').style.display = 'none';
+    const successBox = document.getElementById('transfer-success-box');
+    successBox.style.display = 'block';
+
+    const detailsEl = document.getElementById('transfer-summary-details');
+    if (detailsEl) {
+      detailsEl.innerHTML = `
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 6px;">
+          <span style="color: #94a3b8;">Номер бронирования:</span>
+          <strong style="color: #fbbf24; font-family: monospace;">#${result.id}</strong>
+        </div>
+        <div style="margin-bottom: 4px;"><strong>🛫 Маршрут:</strong> ${result.from} → ${result.to}</div>
+        <div style="margin-bottom: 4px;"><strong>🚗 Автомобиль:</strong> ${result.vehicleName} (${result.passengers} пасс.${result.hasSki ? ', с лыжами' : ''}${result.hasChildSeat ? ', детское кресло' : ''})</div>
+        <div style="margin-bottom: 4px;"><strong>📅 Дата и время:</strong> ${result.date} в ${result.time} ${result.flight ? `(Рейс: ${result.flight})` : ''}</div>
+        <div style="margin-bottom: 4px;"><strong>👤 Пассажир:</strong> ${result.name} (${result.phone})</div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.15);">
+          <span style="font-weight: 700; color: #fff;">Стоимость со скидкой 20%:</span>
+          <span style="font-size: 1.25rem; font-weight: 800; color: #34d399;">${result.discountPrice.toLocaleString('ru-RU')} ₽</span>
+        </div>
+        <div style="font-size: 0.75rem; color: #94a3b8; text-align: right; margin-top: 2px;">(Обычная цена: ${result.originalPrice.toLocaleString('ru-RU')} ₽)</div>
+      `;
+    }
+
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '🚕 Забронировать трансфер со скидкой 20%';
+    }
   }
 
 })();

@@ -232,6 +232,11 @@
           <span>🎟️</span>
           <span>Касса / Погашение</span>
         </div>
+        <div class="admin-nav-item" data-tab="transfers" id="nav-transfers-tab" style="color: #fbbf24;">
+          <span>🚕</span>
+          <span>Заказы трансферов</span>
+          <span id="transfers-pending-badge" style="display: none; background: #ef4444; color: #fff; border-radius: 10px; font-size: 0.7rem; padding: 1px 6px; margin-left: auto;">0</span>
+        </div>
         <div class="admin-nav-item" data-tab="agent" id="nav-agent-tab" style="color: #34d399; font-weight: 700; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25);">
           <span>🤖</span>
           <span>ИИ-Агент Кавказа</span>
@@ -297,6 +302,11 @@
             <span style="font-size: 1.5rem;">✅</span>
             <div class="kpi-val" id="stat-redeemed" style="color: #34d399;">0</div>
             <div style="color: #94a3b8; font-size: 0.85rem;">Погашено на кассах</div>
+          </div>
+          <div class="kpi-card">
+            <span style="font-size: 1.5rem;">🚕</span>
+            <div class="kpi-val" id="stat-transfers" style="color: #fbbf24;">0</div>
+            <div style="color: #94a3b8; font-size: 0.85rem;">Заявок на трансфер</div>
           </div>
         </div>
 
@@ -716,6 +726,50 @@
           </div>
         </div>
       </div>
+
+      <!-- ============================================== -->
+      <!-- ВКЛАДКА 8: ЗАКАЗЫ ТРАНСФЕРОВ И ТАКСИ           -->
+      <!-- ============================================== -->
+      <div id="tab-content-transfers" class="tab-pane" style="display: none;">
+        <div style="background: #131a26; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <select id="admin-tf-status-filter" class="form-input" style="width: 220px;">
+                <option value="all">Все статусы заявок</option>
+                <option value="pending" selected>⏳ Новые (требуют связи)</option>
+                <option value="confirmed">✅ В работе / Подтверждены</option>
+                <option value="completed">🏁 Завершены</option>
+                <option value="cancelled">❌ Отменены</option>
+              </select>
+              <span id="transfers-counter-label" style="font-size: 0.85rem; color: #94a3b8;">Всего заявок: 0</span>
+            </div>
+
+            <button onclick="window.refreshTransfersTable()" class="btn-get-discount" style="padding: 9px 16px; font-size: 0.85rem; background: #1e293b; color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3);">
+              🔄 Обновить заявки
+            </button>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID / Создано</th>
+                  <th>Пассажир</th>
+                  <th>Маршрут</th>
+                  <th>Авто / Рейс</th>
+                  <th>Дата и время</th>
+                  <th>Сумма (-20%)</th>
+                  <th>Статус</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody id="admin-transfers-tbody">
+                <tr><td colspan="8" style="text-align: center; color: #94a3b8; padding: 24px;">Загрузка заявок на трансфер...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
@@ -748,6 +802,7 @@
                 <option value="spa">🧖 Спа и отдых</option>
                 <option value="entertainment">🏔️ Туризм и развлечения</option>
                 <option value="medical">💊 Здоровье и медицина</option>
+                <option value="taxi">🚕 Такси и трансферы</option>
               </select>
             </div>
           </div>

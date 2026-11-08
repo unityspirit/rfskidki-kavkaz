@@ -17,6 +17,7 @@ const CATEGORIES = [
   { id: "spa", name: "Спа, термы и бани", icon: "🧖" },
   { id: "fitness", name: "Спорт и фитнес", icon: "🏋️" },
   { id: "entertainment", name: "Туризм, прокаты и экстрим", icon: "🏔️" },
+  { id: "taxi", name: "Такси и трансферы", icon: "🚕" },
   { id: "medical", name: "Здоровье и медицина", icon: "💊" }
 ];
 
@@ -179,18 +180,29 @@ const INITIAL_COUPONS = [
 ];
 
 // 1. Создаем data/db.json
+let currentDb = {};
+try {
+  currentDb = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'db.json'), 'utf8'));
+} catch (e) {}
+
+const bMap = new Map();
+(currentDb.businesses || []).forEach(b => bMap.set(b.id, b));
+ALL_BUSINESSES.forEach(b => bMap.set(b.id, b));
+const FINAL_BUSINESSES = Array.from(bMap.values());
+
 const fullDbData = {
-  businesses: ALL_BUSINESSES,
+  businesses: FINAL_BUSINESSES,
   cities: CITIES,
   categories: CATEGORIES,
-  users: ADMIN_USERS,
-  reviews: INITIAL_REVIEWS,
-  coupons: INITIAL_COUPONS,
+  users: currentDb.users || ADMIN_USERS,
+  reviews: currentDb.reviews || INITIAL_REVIEWS,
+  coupons: currentDb.coupons || INITIAL_COUPONS,
+  transfers: currentDb.transfers || [],
   stats: {
-    totalReviews: 2450 + ALL_BUSINESSES.length * 15,
-    issuedCoupons: 3820 + ALL_BUSINESSES.length * 20,
-    redeemedCoupons: 2940 + ALL_BUSINESSES.length * 12,
-    totalQrScans: 48500 + ALL_BUSINESSES.length * 250
+    totalReviews: 2450 + FINAL_BUSINESSES.length * 15,
+    issuedCoupons: 3820 + FINAL_BUSINESSES.length * 20,
+    redeemedCoupons: 2940 + FINAL_BUSINESSES.length * 12,
+    totalQrScans: 48500 + FINAL_BUSINESSES.length * 250
   },
   settings: {
     siteName: "ХабСкидок.рф",
@@ -201,22 +213,23 @@ const fullDbData = {
 
 const dbJsonPath = path.join(ROOT, 'data', 'db.json');
 fs.writeFileSync(dbJsonPath, JSON.stringify(fullDbData, null, 2), 'utf8');
-console.log(`[OK] db.json успешно записан (${ALL_BUSINESSES.length} заведений) -> ${dbJsonPath}`);
+console.log(`[OK] db.json успешно записан (${FINAL_BUSINESSES.length} заведений) -> ${dbJsonPath}`);
 
 // 2. Создаем public/js/data-seed.js и js/data-seed.js
 const seedPayload = {
   cities: CITIES,
   categories: CATEGORIES,
-  businesses: ALL_BUSINESSES,
-  admins: ADMIN_USERS.map(({ passwordHash, ...safe }) => safe),
-  reviews: INITIAL_REVIEWS,
-  coupons: INITIAL_COUPONS,
-  version: "2.2.0"
+  businesses: FINAL_BUSINESSES,
+  admins: (fullDbData.users || []).map(({ passwordHash, ...safe }) => safe),
+  reviews: fullDbData.reviews || [],
+  coupons: fullDbData.coupons || [],
+  transfers: fullDbData.transfers || [],
+  version: `2.${FINAL_BUSINESSES.length}.0`
 };
 
 const seedJsContent = `// Автоматически сгенерированный сид данных для автономного режима (GitHub Pages)
 // Дата генерации: ${new Date().toISOString()}
-// Всего заведений: ${ALL_BUSINESSES.length}
+// Всего заведений: ${FINAL_BUSINESSES.length}
 window.RFSKIDKI_INITIAL_DATA = ${JSON.stringify(seedPayload, null, 2)};
 `;
 
@@ -263,7 +276,7 @@ export const CATEGORIES = ${JSON.stringify(CATEGORIES, null, 2)};
 
 export const CITIES = ${JSON.stringify(CITIES, null, 2)};
 
-export const INITIAL_BUSINESSES = ${JSON.stringify(ALL_BUSINESSES, null, 2)};
+export const INITIAL_BUSINESSES = ${JSON.stringify(FINAL_BUSINESSES, null, 2)};
 
 export class Database {
   constructor() {
@@ -272,6 +285,7 @@ export class Database {
       users: [],
       reviews: [],
       coupons: [],
+      transfers: [],
       stats: {
         totalReviews: 2450,
         issuedCoupons: 3820,
@@ -636,6 +650,48 @@ export class Database {
     }
     this.save();
     return { success: true, total: this.data.stats.totalQrScans };
+  }
+
+  addTransfer(data) {
+    if (!this.data.transfers) this.data.transfers = [];
+    const id = 'tr-' + crypto.randomBytes(4).toString('hex');
+    const transfer = {
+      id,
+      from: data.from || "Аэропорт Минеральные Воды (MRV)",
+      to: data.to || "Приэльбрусье (Терскол / Поляна Азау)",
+      vehicleType: data.vehicleType || "comfort",
+      vehicleName: data.vehicleName || "Комфорт (до 4 чел)",
+      date: data.date || new Date().toISOString().slice(0, 10),
+      time: data.time || "12:00",
+      passengers: parseInt(data.passengers) || 1,
+      luggageInfo: data.luggageInfo || "Горнолыжное снаряжение",
+      clientName: data.clientName || "Гость",
+      clientPhone: data.clientPhone || "",
+      comment: data.comment || "",
+      priceEstimated: data.priceEstimated || 3500,
+      priceWithDiscount: data.priceWithDiscount || 2800,
+      discountPercent: 20,
+      promoCode: data.promoCode || "ТРАНСФЕР-20",
+      status: "new",
+      createdAt: new Date().toISOString()
+    };
+    this.data.transfers.unshift(transfer);
+    this.save();
+    return transfer;
+  }
+
+  getTransfers() {
+    return this.data.transfers || [];
+  }
+
+  updateTransferStatus(id, status) {
+    if (!this.data.transfers) return null;
+    const t = this.data.transfers.find(x => x.id === id);
+    if (!t) return null;
+    t.status = status;
+    t.updatedAt = new Date().toISOString();
+    this.save();
+    return t;
   }
 
   getStats() {
