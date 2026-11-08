@@ -4257,6 +4257,30 @@
       "isActive": true,
       "createdAt": "2026-11-08T20:23:58.841Z",
       "verifiedByAgentAt": "2026-11-08T20:23:58.841Z"
+    },
+    {
+      "id": "biz-dagestan-hunzah-tobot",
+      "name": "Панорамный ресторан над каньоном Цолотль «Тобот»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Махачкала",
+      "address": "Республика Дагестан, Хунзахский р-н, с. Хунзах (у водопада Тобот)",
+      "lat": 42.553,
+      "lng": 46.715,
+      "phone": "+7 (988) 425-77-88",
+      "website": "https://tobot-rest.ru",
+      "workHours": "Пн-Вс: 10:00 — 22:00",
+      "discountPercent": 20,
+      "discountBadge": "-20% У ВОДОПАДА ТОБОТ",
+      "discountText": "Скидка 20% на аварский хинкал, ботищал с тянущимся сыром и урбеч с панорамой 70-метрового водопада Тобот",
+      "conditions": "Покажите купон официанту перед закрытием счёта.",
+      "rating": 4.9,
+      "reviewCount": 610,
+      "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 4820,
+      "isActive": true,
+      "createdAt": "2026-11-08T20:25:08.200Z",
+      "verifiedByAgentAt": "2026-11-08T20:25:08.200Z"
     }
   ],
   "cities": [
@@ -4587,8 +4611,8 @@
     "issuedCoupons": 7460,
     "redeemedCoupons": 5124,
     "totalQrScans": 94000,
-    "totalBusinesses": 185,
-    "activeBusinesses": 185
+    "totalBusinesses": 186,
+    "activeBusinesses": 186
   },
   "settings": {
     "siteName": "ХабСкидок.рф",

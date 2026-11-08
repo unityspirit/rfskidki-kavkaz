@@ -558,5 +558,117 @@
     "stage": "DEPLOY",
     "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
     "meta": null
+  },
+  {
+    "id": "log-987cec09",
+    "timestamp": "2026-11-08T20:24:51.197Z",
+    "level": "success",
+    "stage": "DEPLOY",
+    "message": "🎉 Успешный деплой на GitHub Pages! Новые заведения уже онлайн.",
+    "meta": null
+  },
+  {
+    "id": "log-dee59ac4",
+    "timestamp": "2026-11-08T20:24:51.201Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +1 добавлено, отклонено 3. Следующий запуск: 2026-11-09T20:24:51.199Z",
+    "meta": null
+  },
+  {
+    "id": "log-a0f86e28",
+    "timestamp": "2026-11-08T20:25:08.159Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-d8753bcc",
+    "timestamp": "2026-11-08T20:25:08.184Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 185 заведений. Кандидатов в очереди: 0",
+    "meta": null
+  },
+  {
+    "id": "log-ddbb293c",
+    "timestamp": "2026-11-08T20:25:08.186Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔍 Очередь пуста. Запуск сканирования пула кандидатов Кавказа...",
+    "meta": null
+  },
+  {
+    "id": "log-1881bb13",
+    "timestamp": "2026-11-08T20:25:08.192Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "В очередь обработки добавлено 4 кандидатов",
+    "meta": null
+  },
+  {
+    "id": "log-5ea8adce",
+    "timestamp": "2026-11-08T20:25:08.193Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔎 Автоматический сканер отобрал 4 новых объектов Кавказа из пула",
+    "meta": null
+  },
+  {
+    "id": "log-44309da3",
+    "timestamp": "2026-11-08T20:25:08.195Z",
+    "level": "warn",
+    "stage": "VERIFICATION",
+    "message": "❌ [ОТКЛОНЕНО] Высокогорный ресторан «Безенги» (2150 м): Гео-локация заведения [43.118, 43.155] выходит за пределы кластера \"Нальчик\" (Нальчик & КБР)",
+    "meta": null
+  },
+  {
+    "id": "log-a1eccd8e",
+    "timestamp": "2026-11-08T20:25:08.196Z",
+    "level": "warn",
+    "stage": "VERIFICATION",
+    "message": "❌ [ОТКЛОНЕНО] Этно-кафе «Тау Эль» в Верхней Балкарии: Гео-локация заведения [43.125, 43.435] выходит за пределы кластера \"Нальчик\" (Нальчик & КБР)",
+    "meta": null
+  },
+  {
+    "id": "log-d396b3f3",
+    "timestamp": "2026-11-08T20:25:08.198Z",
+    "level": "warn",
+    "stage": "VERIFICATION",
+    "message": "❌ [ОТКЛОНЕНО] Высокогорное кафе у ледника Сказка «Цей»: Гео-локация заведения [42.791, 43.912] выходит за пределы кластера \"Владикавказ\" (Владикавказ & РСО-Алания)",
+    "meta": null
+  },
+  {
+    "id": "log-730c3e38",
+    "timestamp": "2026-11-08T20:25:08.200Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Панорамный ресторан над каньоном Цолотль «Тобот» (Махачкала) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-f5c778b0",
+    "timestamp": "2026-11-08T20:25:08.212Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "💾 База данных обновлена: было 185, стало 186 (+1)",
+    "meta": null
+  },
+  {
+    "id": "log-2222f7cf",
+    "timestamp": "2026-11-08T20:25:08.222Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "✨ Seed-файлы обновлены (версия 2.186.0, 186 заведений)",
+    "meta": null
+  },
+  {
+    "id": "log-5511aa0d",
+    "timestamp": "2026-11-08T20:25:08.223Z",
+    "level": "info",
+    "stage": "DEPLOY",
+    "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
+    "meta": null
   }
 ]

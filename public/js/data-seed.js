@@ -1,6 +1,6 @@
 // Автоматически сгенерированный сид данных для автономного режима (GitHub Pages)
-// Создан Автономным ИИ-Агентом: 2026-11-08T20:23:59.006Z
-// Всего заведений: 185
+// Создан Автономным ИИ-Агентом: 2026-11-08T20:25:08.214Z
+// Всего заведений: 186
 window.RFSKIDKI_INITIAL_DATA = {
   "cities": [
     {
@@ -4453,6 +4453,30 @@ window.RFSKIDKI_INITIAL_DATA = {
       "isActive": true,
       "createdAt": "2026-11-08T20:23:58.841Z",
       "verifiedByAgentAt": "2026-11-08T20:23:58.841Z"
+    },
+    {
+      "id": "biz-dagestan-hunzah-tobot",
+      "name": "Панорамный ресторан над каньоном Цолотль «Тобот»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Махачкала",
+      "address": "Республика Дагестан, Хунзахский р-н, с. Хунзах (у водопада Тобот)",
+      "lat": 42.553,
+      "lng": 46.715,
+      "phone": "+7 (988) 425-77-88",
+      "website": "https://tobot-rest.ru",
+      "workHours": "Пн-Вс: 10:00 — 22:00",
+      "discountPercent": 20,
+      "discountBadge": "-20% У ВОДОПАДА ТОБОТ",
+      "discountText": "Скидка 20% на аварский хинкал, ботищал с тянущимся сыром и урбеч с панорамой 70-метрового водопада Тобот",
+      "conditions": "Покажите купон официанту перед закрытием счёта.",
+      "rating": 4.9,
+      "reviewCount": 610,
+      "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 4820,
+      "isActive": true,
+      "createdAt": "2026-11-08T20:25:08.200Z",
+      "verifiedByAgentAt": "2026-11-08T20:25:08.200Z"
     }
   ],
   "admins": [
@@ -4583,5 +4607,5 @@ window.RFSKIDKI_INITIAL_DATA = {
       "createdAt": "2026-11-07T12:58:38.161Z"
     }
   ],
-  "version": "2.185.0"
+  "version": "2.186.0"
 };
