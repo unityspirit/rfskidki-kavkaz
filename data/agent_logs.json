@@ -1158,5 +1158,21 @@
     "stage": "DEPLOY",
     "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
     "meta": null
+  },
+  {
+    "id": "log-052b4158",
+    "timestamp": "2026-11-09T13:04:19.945Z",
+    "level": "success",
+    "stage": "DEPLOY",
+    "message": "🎉 Успешный деплой на GitHub Pages! Новые заведения уже онлайн.",
+    "meta": null
+  },
+  {
+    "id": "log-a6c8797d",
+    "timestamp": "2026-11-09T13:04:19.948Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +1 добавлено, отклонено 0. Следующий запуск: 2026-11-10T13:04:19.947Z",
+    "meta": null
   }
 ]
