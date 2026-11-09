@@ -1,6 +1,6 @@
 // Автоматически сгенерированный сид данных для автономного режима (GitHub Pages)
-// Создан Автономным ИИ-Агентом: 2026-11-09T13:03:51.599Z
-// Всего заведений: 205
+// Создан Автономным ИИ-Агентом: 2026-11-09T13:04:17.267Z
+// Всего заведений: 206
 window.RFSKIDKI_INITIAL_DATA = {
   "cities": [
     {
@@ -4930,6 +4930,30 @@ window.RFSKIDKI_INITIAL_DATA = {
       "isActive": true,
       "createdAt": "2026-11-09T13:03:51.581Z",
       "verifiedByAgentAt": "2026-11-09T13:03:51.581Z"
+    },
+    {
+      "id": "biz-kislovodsk-medovye-rest",
+      "name": "Ресторанный комплекс «Медовые Водопады»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Кисловодск",
+      "address": "КЧР / граница с Кисловодском, ущелье реки Аликоновка, Медовые водопады",
+      "lat": 43.915,
+      "lng": 42.625,
+      "phone": "+7 (928) 385-15-15",
+      "website": "https://medovye-vodo.ru",
+      "workHours": "Пн-Вс: 09:00 — 20:00",
+      "discountPercent": 20,
+      "discountBadge": "-20% У МЕДОВЫХ ВОДОПАДОВ",
+      "discountText": "Скидка 20% на карачаевские хычины, шашлык на углях и травяной горный сбор с мёдом у бурлящих водопадов",
+      "conditions": "Покажите купон при заказе.",
+      "rating": 4.9,
+      "reviewCount": 630,
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 5200,
+      "isActive": true,
+      "createdAt": "2026-11-09T13:04:17.252Z",
+      "verifiedByAgentAt": "2026-11-09T13:04:17.252Z"
     }
   ],
   "admins": [
@@ -5060,5 +5084,5 @@ window.RFSKIDKI_INITIAL_DATA = {
       "createdAt": "2026-11-07T12:58:38.161Z"
     }
   ],
-  "version": "2.205.0"
+  "version": "2.206.0"
 };

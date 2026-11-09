@@ -1070,5 +1070,93 @@
     "stage": "DEPLOY",
     "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
     "meta": null
+  },
+  {
+    "id": "log-074f2371",
+    "timestamp": "2026-11-09T13:03:54.757Z",
+    "level": "success",
+    "stage": "DEPLOY",
+    "message": "🎉 Успешный деплой на GitHub Pages! Новые заведения уже онлайн.",
+    "meta": null
+  },
+  {
+    "id": "log-83c9d1b8",
+    "timestamp": "2026-11-09T13:03:54.761Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +4 добавлено, отклонено 0. Следующий запуск: 2026-11-10T13:03:54.759Z",
+    "meta": null
+  },
+  {
+    "id": "log-af2f2c01",
+    "timestamp": "2026-11-09T13:04:17.240Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-85a31519",
+    "timestamp": "2026-11-09T13:04:17.246Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 205 заведений. Кандидатов в очереди: 0",
+    "meta": null
+  },
+  {
+    "id": "log-5c36e26e",
+    "timestamp": "2026-11-09T13:04:17.248Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔍 Очередь пуста. Запуск сканирования пула кандидатов Кавказа...",
+    "meta": null
+  },
+  {
+    "id": "log-bd98621c",
+    "timestamp": "2026-11-09T13:04:17.250Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "В очередь обработки добавлено 1 кандидатов",
+    "meta": null
+  },
+  {
+    "id": "log-ad89ad6e",
+    "timestamp": "2026-11-09T13:04:17.251Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔎 Автоматический сканер отобрал 1 новых объектов Кавказа из пула",
+    "meta": null
+  },
+  {
+    "id": "log-89802fd5",
+    "timestamp": "2026-11-09T13:04:17.252Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторанный комплекс «Медовые Водопады» (Кисловодск) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-1f9fc13f",
+    "timestamp": "2026-11-09T13:04:17.265Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "💾 База данных обновлена: было 205, стало 206 (+1)",
+    "meta": null
+  },
+  {
+    "id": "log-7e9c434f",
+    "timestamp": "2026-11-09T13:04:17.276Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "✨ Seed-файлы обновлены (версия 2.206.0, 206 заведений)",
+    "meta": null
+  },
+  {
+    "id": "log-759bd707",
+    "timestamp": "2026-11-09T13:04:17.278Z",
+    "level": "info",
+    "stage": "DEPLOY",
+    "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
+    "meta": null
   }
 ]

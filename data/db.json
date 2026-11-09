@@ -4729,6 +4729,30 @@
       "isActive": true,
       "createdAt": "2026-11-09T13:03:51.581Z",
       "verifiedByAgentAt": "2026-11-09T13:03:51.581Z"
+    },
+    {
+      "id": "biz-kislovodsk-medovye-rest",
+      "name": "Ресторанный комплекс «Медовые Водопады»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Кисловодск",
+      "address": "КЧР / граница с Кисловодском, ущелье реки Аликоновка, Медовые водопады",
+      "lat": 43.915,
+      "lng": 42.625,
+      "phone": "+7 (928) 385-15-15",
+      "website": "https://medovye-vodo.ru",
+      "workHours": "Пн-Вс: 09:00 — 20:00",
+      "discountPercent": 20,
+      "discountBadge": "-20% У МЕДОВЫХ ВОДОПАДОВ",
+      "discountText": "Скидка 20% на карачаевские хычины, шашлык на углях и травяной горный сбор с мёдом у бурлящих водопадов",
+      "conditions": "Покажите купон при заказе.",
+      "rating": 4.9,
+      "reviewCount": 630,
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 5200,
+      "isActive": true,
+      "createdAt": "2026-11-09T13:04:17.252Z",
+      "verifiedByAgentAt": "2026-11-09T13:04:17.252Z"
     }
   ],
   "cities": [
@@ -5094,8 +5118,8 @@
     "issuedCoupons": 7780,
     "redeemedCoupons": 5316,
     "totalQrScans": 98000,
-    "totalBusinesses": 205,
-    "activeBusinesses": 205
+    "totalBusinesses": 206,
+    "activeBusinesses": 206
   },
   "settings": {
     "siteName": "ХабСкидок.рф",
