@@ -958,5 +958,117 @@
     "stage": "DEPLOY",
     "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
     "meta": null
+  },
+  {
+    "id": "log-21841a0d",
+    "timestamp": "2026-11-09T13:03:20.892Z",
+    "level": "success",
+    "stage": "DEPLOY",
+    "message": "🎉 Успешный деплой на GitHub Pages! Новые заведения уже онлайн.",
+    "meta": null
+  },
+  {
+    "id": "log-c4a9651e",
+    "timestamp": "2026-11-09T13:03:20.894Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +3 добавлено, отклонено 1. Следующий запуск: 2026-11-10T13:03:20.893Z",
+    "meta": null
+  },
+  {
+    "id": "log-8a45be73",
+    "timestamp": "2026-11-09T13:03:51.557Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-b9fe4689",
+    "timestamp": "2026-11-09T13:03:51.564Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 201 заведений. Кандидатов в очереди: 0",
+    "meta": null
+  },
+  {
+    "id": "log-b38880d1",
+    "timestamp": "2026-11-09T13:03:51.567Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔍 Очередь пуста. Запуск сканирования пула кандидатов Кавказа...",
+    "meta": null
+  },
+  {
+    "id": "log-274a7a08",
+    "timestamp": "2026-11-09T13:03:51.570Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "В очередь обработки добавлено 4 кандидатов",
+    "meta": null
+  },
+  {
+    "id": "log-3e8ea7f7",
+    "timestamp": "2026-11-09T13:03:51.572Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔎 Автоматический сканер отобрал 4 новых объектов Кавказа из пула",
+    "meta": null
+  },
+  {
+    "id": "log-7828311f",
+    "timestamp": "2026-11-09T13:03:51.574Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Панорамное кафе «Софруджу» (2500 м) (Домбай) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-ac71687c",
+    "timestamp": "2026-11-09T13:03:51.577Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Термальный SPA-комплекс «Кармадон Спрингс» (Владикавказ) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-b8187676",
+    "timestamp": "2026-11-09T13:03:51.580Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Этно-ресторан «Орлиное Гнездо Гуниба» (Махачкала) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-b1c5e31d",
+    "timestamp": "2026-11-09T13:03:51.582Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Панорамный гриль-бар «Орлиные Скалы Бештау» (Пятигорск) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-947dce59",
+    "timestamp": "2026-11-09T13:03:51.596Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "💾 База данных обновлена: было 201, стало 205 (+4)",
+    "meta": null
+  },
+  {
+    "id": "log-a596d53c",
+    "timestamp": "2026-11-09T13:03:51.606Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "✨ Seed-файлы обновлены (версия 2.205.0, 205 заведений)",
+    "meta": null
+  },
+  {
+    "id": "log-7267e182",
+    "timestamp": "2026-11-09T13:03:51.608Z",
+    "level": "info",
+    "stage": "DEPLOY",
+    "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
+    "meta": null
   }
 ]
