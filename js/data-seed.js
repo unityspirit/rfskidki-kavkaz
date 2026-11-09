@@ -1,6 +1,6 @@
 // Автоматически сгенерированный сид данных для автономного режима (GitHub Pages)
-// Дата генерации: 2026-11-08T20:56:07.425Z
-// Всего заведений: 198
+// Создан Автономным ИИ-Агентом: 2026-11-09T13:03:17.493Z
+// Всего заведений: 201
 window.RFSKIDKI_INITIAL_DATA = {
   "cities": [
     {
@@ -4762,6 +4762,78 @@ window.RFSKIDKI_INITIAL_DATA = {
       "qrScans": 5120,
       "isActive": true,
       "createdAt": "2026-11-08T12:00:00.000Z"
+    },
+    {
+      "id": "biz-elbrus-balka-narzanov",
+      "name": "Эко-кафе «Поляна Нарзанов»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Приэльбрусье",
+      "address": "КБР, Эльбрусский р-н, с. Байдаево, Поляна Нарзанов",
+      "lat": 43.2562,
+      "lng": 42.562,
+      "phone": "+7 (928) 722-19-19",
+      "website": "https://polyana-narzanov.ru",
+      "workHours": "Пн-Вс: 09:00 — 21:00",
+      "discountPercent": 20,
+      "discountBadge": "-20% У НАРЗАННЫХ ИСТОЧНИКОВ",
+      "discountText": "Скидка 20% на хычины на нарзанной воде, шашлык из баранины и травяной горный чай",
+      "conditions": "Предъявите купон до оформления счёта.",
+      "rating": 4.9,
+      "reviewCount": 380,
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 3120,
+      "isActive": true,
+      "createdAt": "2026-11-09T13:03:17.467Z",
+      "verifiedByAgentAt": "2026-11-09T13:03:17.467Z"
+    },
+    {
+      "id": "biz-arkhyz-gornoe-solntse",
+      "name": "SPA-комплекс «Горное Солнце Архыза»",
+      "category": "spa",
+      "categoryName": "Спа и отдых",
+      "city": "Архыз",
+      "address": "КЧР, Зеленчукский р-н, пос. Романтик, ул. Горная, 15",
+      "lat": 43.541,
+      "lng": 41.179,
+      "phone": "+7 (928) 399-44-11",
+      "website": "https://arkhyz-sun-spa.ru",
+      "workHours": "Пн-Вс: 10:00 — 23:00",
+      "discountPercent": 25,
+      "discountBadge": "-25% НА БАССЕЙН И САУНУ",
+      "discountText": "Скидка 25% на посещение открытого подогреваемого бассейна с видом на вершины Романтика и кедровую сауну",
+      "conditions": "Покажите купон администратору SPA-центра.",
+      "rating": 5,
+      "reviewCount": 490,
+      "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 4150,
+      "isActive": true,
+      "createdAt": "2026-11-09T13:03:17.474Z",
+      "verifiedByAgentAt": "2026-11-09T13:03:17.474Z"
+    },
+    {
+      "id": "biz-nalchik-sokoliny-kamen",
+      "name": "Ресторан кавказской кухни «Соколиный Камень»",
+      "category": "restaurants",
+      "categoryName": "Рестораны и кафе",
+      "city": "Нальчик",
+      "address": "КБР, г. Нальчик, Атажукинский сад, аллея Голубых Елей, 4",
+      "lat": 43.472,
+      "lng": 43.593,
+      "phone": "+7 (8662) 42-18-18",
+      "website": "https://sokol-nalchik.ru",
+      "workHours": "Пн-Вс: 11:00 — 23:30",
+      "discountPercent": 20,
+      "discountBadge": "-20% В АТАЖУКИНСКОМ САДУ",
+      "discountText": "Скидка 20% на фирменное гедлибже, баранину по-кабардински и свежеиспеченные лакумы",
+      "conditions": "Покажите купон официанту перед закрытием счёта.",
+      "rating": 4.9,
+      "reviewCount": 510,
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&auto=format&fit=crop&q=80",
+      "qrScans": 4320,
+      "isActive": true,
+      "createdAt": "2026-11-09T13:03:17.480Z",
+      "verifiedByAgentAt": "2026-11-09T13:03:17.480Z"
     }
   ],
   "admins": [
@@ -4892,6 +4964,5 @@ window.RFSKIDKI_INITIAL_DATA = {
       "createdAt": "2026-11-07T12:58:38.161Z"
     }
   ],
-  "transfers": [],
-  "version": "2.198.0"
+  "version": "2.201.0"
 };

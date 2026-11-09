@@ -822,5 +822,141 @@
     "stage": "DAEMON",
     "message": "🟢 Автономный демон запущен (интервал: каждые 24 ч). Статус: АКТИВЕН 24/7",
     "meta": null
+  },
+  {
+    "id": "log-011a46de",
+    "timestamp": "2026-11-09T13:00:29.424Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-ce9f10f2",
+    "timestamp": "2026-11-09T13:00:29.437Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 198 заведений. Кандидатов в очереди: 0",
+    "meta": null
+  },
+  {
+    "id": "log-df4ca352",
+    "timestamp": "2026-11-09T13:00:29.443Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔍 Очередь пуста. Запуск сканирования пула кандидатов Кавказа...",
+    "meta": null
+  },
+  {
+    "id": "log-ad63a505",
+    "timestamp": "2026-11-09T13:00:29.451Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "Новых заведений для добавления в этом цикле не найдено. База актуальна.",
+    "meta": null
+  },
+  {
+    "id": "log-537dcd2d",
+    "timestamp": "2026-11-09T13:00:29.456Z",
+    "level": "success",
+    "stage": "CYCLE",
+    "message": "🏁 Цикл завершён успешно: +0 добавлено, отклонено 0. Следующий запуск: 2026-11-10T13:00:29.453Z",
+    "meta": null
+  },
+  {
+    "id": "log-6ee0622a",
+    "timestamp": "2026-11-09T13:03:17.433Z",
+    "level": "info",
+    "stage": "CYCLE",
+    "message": "🚀 Старт автономного цикла верификации и обновления базы...",
+    "meta": null
+  },
+  {
+    "id": "log-56b4a795",
+    "timestamp": "2026-11-09T13:03:17.448Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "Текущая база: 198 заведений. Кандидатов в очереди: 0",
+    "meta": null
+  },
+  {
+    "id": "log-62413073",
+    "timestamp": "2026-11-09T13:03:17.449Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔍 Очередь пуста. Запуск сканирования пула кандидатов Кавказа...",
+    "meta": null
+  },
+  {
+    "id": "log-679cf61d",
+    "timestamp": "2026-11-09T13:03:17.453Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "В очередь обработки добавлено 4 кандидатов",
+    "meta": null
+  },
+  {
+    "id": "log-e170812b",
+    "timestamp": "2026-11-09T13:03:17.455Z",
+    "level": "info",
+    "stage": "DISCOVERY",
+    "message": "🔎 Автоматический сканер отобрал 4 новых объектов Кавказа из пула",
+    "meta": null
+  },
+  {
+    "id": "log-62e6adb7",
+    "timestamp": "2026-11-09T13:03:17.467Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Эко-кафе «Поляна Нарзанов» (Приэльбрусье) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-7bffb6ae",
+    "timestamp": "2026-11-09T13:03:17.474Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] SPA-комплекс «Горное Солнце Архыза» (Архыз) — скидка 25%",
+    "meta": null
+  },
+  {
+    "id": "log-6351d15d",
+    "timestamp": "2026-11-09T13:03:17.477Z",
+    "level": "warn",
+    "stage": "VERIFICATION",
+    "message": "❌ [ОТКЛОНЕНО] Панорамное кафе «Софруджу» (2500 м): Ближайший дубликат (расстояние 0м) с заведением \"Высокогорное панорамное кафе «Инэ»\"",
+    "meta": null
+  },
+  {
+    "id": "log-6e3bcc8c",
+    "timestamp": "2026-11-09T13:03:17.480Z",
+    "level": "success",
+    "stage": "VERIFICATION",
+    "message": "✅ [ОДОБРЕНО] Ресторан кавказской кухни «Соколиный Камень» (Нальчик) — скидка 20%",
+    "meta": null
+  },
+  {
+    "id": "log-6376e6b5",
+    "timestamp": "2026-11-09T13:03:17.492Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "💾 База данных обновлена: было 198, стало 201 (+3)",
+    "meta": null
+  },
+  {
+    "id": "log-d2b220bd",
+    "timestamp": "2026-11-09T13:03:17.502Z",
+    "level": "success",
+    "stage": "INGEST",
+    "message": "✨ Seed-файлы обновлены (версия 2.201.0, 201 заведений)",
+    "meta": null
+  },
+  {
+    "id": "log-0ff3517a",
+    "timestamp": "2026-11-09T13:03:17.504Z",
+    "level": "info",
+    "stage": "DEPLOY",
+    "message": "🚀 Выполняем авто-коммит и деплой на GitHub Pages...",
+    "meta": null
   }
 ]

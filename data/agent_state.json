@@ -1,11 +1,11 @@
 {
   "enabled": true,
   "intervalHours": 24,
-  "lastRun": "2026-11-08T20:25:54.636Z",
-  "nextRun": "2026-11-09T20:25:58.679Z",
+  "lastRun": "2026-11-09T13:00:29.424Z",
+  "nextRun": "2026-11-10T13:00:29.453Z",
   "isRunning": false,
   "metrics": {
-    "totalCycles": 5,
+    "totalCycles": 6,
     "totalScanned": 50,
     "totalApproved": 42,
     "totalRejected": 8,
